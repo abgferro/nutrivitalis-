@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contato — NutriVitalis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --bg-primary:     #F7F5F0;
+  --bg-secondary:   #EFEDE7;
+  --green-main:     #1E5C3A;
+  --green-mid:      #2D6A4F;
+  --green-accent:   #52B788;
+  --green-soft:     #EAF4EE;
+  --gold:           #B8922A;
+  --text-main:      #1A1A1A;
+  --text-secondary: #4A5550;
+  --text-muted:     #8A9890;
+  --border:         #E0DBD0;
+
+  --text-5xl: clamp(2.25rem, 6vw, 4rem);
+  --text-4xl: clamp(2rem, 5vw, 3.25rem);
+  --text-3xl: clamp(1.75rem, 4vw, 2.5rem);
+  --text-2xl: 2rem;
+  --text-xl:  clamp(1.25rem, 2.5vw, 1.5rem);
+  --text-base: clamp(0.9rem, 1.5vw, 1rem);
+  --text-sm:  0.875rem;
+  --text-xs:  0.75rem;
+  --text-2xs: 0.64rem;
+
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+  --tracking-tight:  -0.03em;
+  --tracking-widest: 0.18em;
+
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-2xl:  48px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 4px rgba(30,92,58,.06);
+  --shadow-sm: 0 2px 12px rgba(30,92,58,.08);
+  --shadow-md: 0 4px 24px rgba(30,92,58,.1);
+  --shadow-lg: 0 8px 40px rgba(30,92,58,.13);
+  --shadow-xl: 0 16px 64px rgba(30,92,58,.18);
+  --shadow-glow-sm: 0 0 16px rgba(82,183,136,.2);
+  --shadow-glow-md: 0 0 32px rgba(82,183,136,.28);
+  --shadow-gold: 0 4px 24px rgba(184,146,42,.2);
+
+  --blur-sm:    blur(8px);
+  --blur-glass: blur(16px);
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  --ease-spring:  cubic-bezier(.16,1,.3,1);
+  --ease-smooth:  cubic-bezier(.4,0,.2,1);
+  --ease-enter:   cubic-bezier(0,0,.2,1);
+  --ease-bounce:  cubic-bezier(.34,1.56,.64,1);
+  --dur-fast:     150ms;
+  --dur-normal:   250ms;
+  --dur-medium:   350ms;
+  --dur-slow:     500ms;
+  --dur-deliberate: 700ms;
+  --transition-base:  all var(--dur-normal) var(--ease-smooth);
+  --transition-hover: transform var(--dur-normal) var(--ease-spring), box-shadow var(--dur-normal) var(--ease-smooth);
+
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+
+  --container-xl: 1280px;
+
+  --c-bg:        var(--bg-primary);
+  --c-bg2:       var(--bg-secondary);
+  --c-text:      var(--text-main);
+  --c-text2:     var(--text-secondary);
+  --c-muted:     var(--text-muted);
+  --c-border:    var(--border);
+  --c-card:      #ffffff;
+  --c-nav-bg:    rgba(247,245,240,0.92);
+  --c-logo-word: var(--green-main);
+  --c-icon-bg:   var(--green-soft);
+}
+
+[data-theme="dark"] {
+  --c-bg:        #060F0A;
+  --c-bg2:       #0A1810;
+  --c-text:      #EDE8DC;
+  --c-text2:     #A8B8A8;
+  --c-muted:     #6A7A72;
+  --c-border:    #1E3828;
+  --c-card:      #0E2016;
+  --c-nav-bg:    rgba(6,15,10,0.92);
+  --c-logo-word: #52B788;
+  --c-icon-bg:   rgba(82,183,136,.12);
+  --gold:        #C9A84C;
+  --green-soft:  rgba(82,183,136,.12);
+  --shadow-md:   0 4px 24px rgba(0,0,0,.4);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,.5);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: var(--leading-relaxed);
+  font-size: 16px;
+  transition: background var(--dur-slow) var(--ease-smooth), color var(--dur-slow) var(--ease-smooth);
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+@keyframes nv-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes nv-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes nv-pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+@keyframes nv-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes nv-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  60%       { transform: translateX(-3px); }
+  80%       { transform: translateX(3px); }
+}
+@keyframes nv-success-pop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--dur-medium) var(--ease-spring),
+              transform var(--dur-medium) var(--ease-spring);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 60ms; }
+.reveal-d2 { transition-delay: 120ms; }
+.reveal-d3 { transition-delay: 180ms; }
+.reveal-d4 { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   UTILITÁRIOS
+   ============================================================ */
+.container {
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: 80px;
+}
+@media (max-width: 1023px) { .container { padding-inline: 40px; } }
+@media (max-width: 767px)  { .container { padding-inline: 24px; } }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: .9rem; font-weight: 600;
+  padding: .85rem 2rem;
+  transition: var(--transition-hover), background var(--dur-normal) var(--ease-smooth);
+  min-height: 44px;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--green-main);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(30,92,58,.28);
+}
+.btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,92,58,.38); }
+.btn-primary:active { transform: translateY(0); transition: transform 80ms; }
+[data-theme="dark"] .btn-primary { background: var(--green-accent); color: #060F0A; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--green-main);
+  border: 1.5px solid var(--green-main);
+}
+.btn-outline:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,92,58,.15); background: var(--green-soft); }
+.btn-outline:active { transform: translateY(0); }
+[data-theme="dark"] .btn-outline { color: var(--green-accent); border-color: var(--green-accent); }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: var(--z-sticky);
+  transition: background var(--dur-slow) var(--ease-smooth),
+              box-shadow var(--dur-slow) var(--ease-smooth),
+              backdrop-filter var(--dur-slow) var(--ease-smooth);
+}
+.navbar.scrolled {
+  background: var(--c-nav-bg);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: 0 1px 0 var(--c-border), var(--shadow-sm);
+}
+.navbar__inner { display: flex; align-items: center; gap: var(--space-8); height: 72px; }
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo__text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo__wordmark { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.02em; }
+.logo__nutri { color: #1A1A1A; }
+[data-theme="dark"] .logo__nutri { color: #EDE8DC; }
+.logo__vitalis { color: #1E5C3A; }
+[data-theme="dark"] .logo__vitalis { color: #52B788; }
+.logo__tagline { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.5rem; font-weight: 600; letter-spacing: 0.15em; color: #B8922A; text-transform: uppercase; }
+[data-theme="dark"] .logo__tagline { color: #C9A84C; }
+[data-theme="dark"] .logo img { filter: brightness(0) invert(1); }
+
+.nav-links { display: flex; align-items: center; gap: 4px; flex: 1; justify-content: center; }
+.nav-links a {
+  font-size: .875rem; font-weight: 500; color: var(--c-text2);
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  transition: color var(--dur-normal) var(--ease-smooth);
+  position: relative; white-space: nowrap;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -2px; left: 12px; right: 12px;
+  height: 2px; background: var(--green-main); border-radius: 2px;
+  transform: scaleX(0); transition: transform var(--dur-normal) var(--ease-spring);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--green-main); }
+.nav-links a.active::after, .nav-links a:hover::after { transform: scaleX(1); }
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active { color: var(--green-accent); }
+[data-theme="dark"] .nav-links a::after { background: var(--green-accent); }
+
+.nav-right { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+
+.theme-toggle {
+  display: flex; align-items: center;
+  background: var(--c-bg2); border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-full); padding: 3px; gap: 2px;
+  height: 36px; cursor: pointer; transition: var(--transition-base);
+}
+.theme-toggle__btn {
+  width: 28px; height: 28px; border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: background var(--dur-normal) var(--ease-smooth); cursor: pointer;
+}
+.theme-toggle__btn.active { background: var(--green-main); }
+[data-theme="dark"] .theme-toggle__btn.active { background: var(--green-accent); }
+
+.hamburger {
+  display: none; width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); color: var(--c-text);
+  transition: var(--transition-base); margin-left: auto; flex-shrink: 0;
+}
+.hamburger:hover { background: var(--c-bg2); }
+
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.4);
+  z-index: var(--z-overlay); opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-normal) var(--ease-smooth); backdrop-filter: blur(4px);
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(340px, 90vw); background: var(--c-bg);
+  z-index: var(--z-modal); transform: translateX(100%);
+  transition: transform var(--dur-slow) var(--ease-spring);
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.drawer.open { transform: translateX(0); }
+
+.drawer__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--c-border); height: 72px;
+}
+.drawer__close {
+  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm); color: var(--c-text2); transition: var(--transition-base); cursor: pointer;
+}
+.drawer__close:hover { background: var(--c-bg2); color: var(--c-text); }
+
+.drawer__nav { padding: var(--space-4); flex: 1; }
+.drawer__nav a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px var(--space-4); border-radius: var(--radius-md);
+  font-size: 1rem; font-weight: 500; color: var(--c-text2);
+  transition: var(--transition-base); gap: var(--space-3);
+}
+.drawer__nav a .nav-icon { color: var(--green-main); flex-shrink: 0; }
+.drawer__nav a:hover, .drawer__nav a.active { background: var(--green-soft); color: var(--green-main); }
+[data-theme="dark"] .drawer__nav a:hover,
+[data-theme="dark"] .drawer__nav a.active { background: rgba(82,183,136,.1); color: var(--green-accent); }
+.drawer__nav a.active { font-weight: 700; }
+.drawer__nav .chevron { opacity: .4; }
+
+.drawer__footer {
+  padding: var(--space-6); border-top: 1px solid var(--c-border);
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.drawer__footer .btn { width: 100%; justify-content: center; }
+
+.drawer__tagline {
+  margin-top: var(--space-2);
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4); background: var(--green-soft); border-radius: var(--radius-md);
+}
+.drawer__tagline-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.drawer__tagline-text { font-size: var(--text-sm); }
+.drawer__tagline-title { font-weight: 700; color: var(--c-text); font-size: .85rem; }
+.drawer__tagline-sub { color: var(--c-text2); font-size: .78rem; }
+
+.drawer__theme-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 4px; margin-bottom: 8px;
+}
+.drawer__theme-label { font-size: 0.875rem; font-weight: 600; color: var(--c-text2); }
+
+@media (max-width: 1023px) {
+  .nav-links { display: none; }
+  .nav-right { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ============================================================
+   HERO — CONTATO
+   ============================================================ */
+.hero-contato {
+  padding-top: calc(72px + 48px);
+  padding-bottom: 56px;
+  background: var(--c-bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-contato__bg-deco {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-contato__bg-deco svg {
+  position: absolute; opacity: .04; color: var(--green-main);
+}
+.hero-contato__bg-deco .hd1 { top: -5%; left: -2%; width: 220px; transform: rotate(-20deg); }
+.hero-contato__bg-deco .hd2 { bottom: -5%; right: -2%; width: 180px; transform: rotate(18deg); }
+.hero-contato__bg-deco .hd3 { top: 30%; right: 10%; width: 80px; transform: rotate(10deg); opacity: .025; }
+
+.hero-contato__inner {
+  max-width: 640px; margin-inline: auto;
+  display: flex; flex-direction: column;
+  align-items: center; gap: var(--space-4);
+  position: relative; z-index: 1;
+}
+
+.hero-contato__eyebrow {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--green-soft); color: var(--green-main);
+  border-radius: var(--radius-full); padding: 6px 16px;
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+}
+[data-theme="dark"] .hero-contato__eyebrow { color: var(--green-accent); }
+
+.hero-contato__dot {
+  width: 7px; height: 7px; background: var(--green-accent);
+  border-radius: 50%; animation: nv-pulse-dot 1.8s ease-in-out infinite;
+}
+
+.hero-contato__title {
+  font-size: var(--text-5xl); font-weight: 800;
+  line-height: var(--leading-tight); letter-spacing: var(--tracking-tight);
+  color: var(--c-text);
+}
+.hero-contato__title-accent { color: var(--green-accent); }
+
+.hero-contato__deco-line {
+  width: 64px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
+}
+
+.hero-contato__sub {
+  font-size: var(--text-xl); color: var(--c-text2);
+  line-height: var(--leading-relaxed); max-width: 480px;
+}
+
+@media (max-width: 767px) {
+  .hero-contato { padding-top: calc(72px + 32px); padding-bottom: 40px; }
+  .hero-contato__title { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .hero-contato__sub { font-size: 1rem; }
+}
+
+/* ============================================================
+   LAYOUT DOIS-COLUNAS
+   ============================================================ */
+.contato-section {
+  background: var(--c-bg);
+  padding-block: var(--space-16);
+  border-top: 1px solid var(--c-border);
+}
+
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* fallback */
+  grid-template-columns: 60fr 40fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (max-width: 1023px) {
+  .contato-grid { gap: var(--space-8); grid-template-columns: 1fr; }
+  .contato-col-info { order: -1; } /* info acima no mobile */
+}
+@media (max-width: 767px) {
+  .contato-col-form { order: 2; }
+  .contato-col-info { order: 1; }
+  .contato-section { padding-block: var(--space-12); }
+}
+
+/* ---- FORMULÁRIO ---- */
+.form-card {
+  background: var(--c-card);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+[data-theme="dark"] .form-card { background: var(--c-card); border-color: var(--c-border); }
+
+.form-card__title {
+  font-size: var(--text-2xl); font-weight: 700;
+  color: var(--c-text); letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-6);
+}
+
+.form-group {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.form-group label {
+  font-size: var(--text-sm); font-weight: 600;
+  color: var(--c-text2); letter-spacing: .01em;
+}
+
+.input-wrap {
+  position: relative;
+}
+.input-wrap .input-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: var(--c-muted);
+  pointer-events: none; transition: color var(--dur-normal) var(--ease-smooth);
+}
+.input-wrap.textarea-wrap .input-icon {
+  top: 16px; transform: none;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: .85rem var(--space-4) .85rem 42px;
+  font-family: inherit; font-size: var(--text-sm);
+  background: var(--c-bg); color: var(--c-text);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--dur-normal) var(--ease-smooth),
+              box-shadow var(--dur-normal) var(--ease-smooth);
+  min-height: 48px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A9890' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+[data-theme="dark"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236A7A72' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: var(--leading-relaxed);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--c-muted); }
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea { background: var(--c-bg2); }
+
+[data-theme="dark"] .form-select {
+  background-color: var(--c-bg2);
+  color: var(--c-text);
+  border-color: var(--c-border);
+  color-scheme: dark;
+}
+[data-theme="dark"] .form-select option {
+  background: var(--c-bg2);
+  color: var(--c-text);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--green-main);
+  box-shadow: 0 0 0 3px rgba(30,92,58,.1);
+}
+.form-input:focus ~ .input-icon,
+.form-select:focus ~ .input-icon,
+.form-textarea:focus ~ .input-icon { color: var(--green-main); }
+.input-wrap:focus-within .input-icon { color: var(--green-main); }
+
+/* Error / success states */
+.form-input.is-error,
+.form-select.is-error,
+.form-textarea.is-error {
+  border-color: #D94F4F;
+  box-shadow: 0 0 0 3px rgba(217,79,79,.1);
+  animation: nv-shake var(--dur-medium) var(--ease-smooth);
+}
+.form-input.is-valid,
+.form-select.is-valid,
+.form-textarea.is-valid {
+  border-color: var(--green-accent);
+  box-shadow: 0 0 0 3px rgba(82,183,136,.12);
+}
+.field-msg {
+  font-size: .8rem; font-weight: 500; margin-top: 4px;
+  display: none; align-items: center; gap: 4px;
+}
+.field-msg.show { display: flex; }
+.field-msg.error { color: #D94F4F; }
+.field-msg.success { color: var(--green-accent); }
+
+/* Submit button */
+.btn-submit {
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  margin-top: var(--space-2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Feedback global */
+.form-feedback {
+  display: none;
+  align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: 600;
+  margin-top: var(--space-4);
+  animation: nv-success-pop var(--dur-medium) var(--ease-bounce);
+}
+.form-feedback.show { display: flex; }
+.form-feedback.success {
+  background: rgba(82,183,136,.12); color: #1E5C3A;
+  border: 1.5px solid rgba(82,183,136,.3);
+}
+[data-theme="dark"] .form-feedback.success {
+  background: rgba(82,183,136,.15); color: var(--green-accent);
+  border-color: rgba(82,183,136,.25);
+}
+.form-feedback.error {
+  background: rgba(217,79,79,.1); color: #C0392B;
+  border: 1.5px solid rgba(217,79,79,.25);
+}
+[data-theme="dark"] .form-feedback.error { color: #E07070; }
+
+/* Select group — no icon offset */
+.form-group--select .form-select { padding-left: var(--space-4); }
+
+@media (max-width: 767px) {
+  .form-card { padding: var(--space-6); }
+}
+
+/* ---- COLUNA DIREITA (informações) ---- */
+.info-stack {
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--c-card);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-hover);
+}
+.info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+[data-theme="dark"] .info-card { background: var(--c-card); border-color: var(--c-border); }
+[data-theme="dark"] .info-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.4); }
+
+.info-card--green {
+  background: var(--green-soft);
+  border-color: rgba(30,92,58,.15);
+}
+[data-theme="dark"] .info-card--green {
+  background: rgba(82,183,136,.1);
+  border-color: rgba(82,183,136,.2);
+}
+
+.info-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: var(--green-soft);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-main);
+}
+[data-theme="dark"] .info-card__icon-wrap { background: rgba(82,183,136,.12); color: var(--green-accent); }
+.info-card--green .info-card__icon-wrap { background: #fff; }
+[data-theme="dark"] .info-card--green .info-card__icon-wrap { background: rgba(82,183,136,.15); }
+
+.info-card__icon-wrap [data-lucide] { width: 20px; height: 20px; stroke-width: 1.5; }
+
+.info-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.info-card__title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--c-text);
+}
+.info-card__text {
+  font-size: var(--text-sm);
+  color: var(--c-text2);
+  line-height: var(--leading-relaxed);
+}
+
+/* Card destaque dark */
+.info-card--dark {
+  background: var(--green-main);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  flex-direction: column;
+  gap: var(--space-4);
+}
+[data-theme="dark"] .info-card--dark {
+  background: linear-gradient(135deg, #1E5C3A, #0E3B22);
+  border: 1px solid rgba(82,183,136,.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+}
+.info-card--dark .info-card__icon-wrap {
+  background: rgba(255,255,255,.12); color: #C9A84C;
+}
+[data-theme="dark"] .info-card--dark .info-card__icon-wrap { color: #C9A84C; }
+.info-card--dark .info-card__title { color: #EDE8DC; font-size: 1.05rem; }
+.info-card--dark .info-card__text  { color: rgba(237,232,220,.75); margin: 0; }
+.info-card--dark:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+
+@media (max-width: 767px) {
+  .info-card { border-radius: var(--radius-md); }
+  .info-card--dark { border-radius: var(--radius-md); }
+}
+
+.info-card--dark .btn-white {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: #fff; color: var(--green-main);
+  border-radius: var(--radius-full);
+  font-size: .85rem; font-weight: 700;
+  padding: .65rem 1.4rem; min-height: 40px;
+  align-self: flex-start;
+  transition: var(--transition-hover);
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+.info-card--dark .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+
+/* ============================================================
+   FAQ ACORDEÃO
+   ============================================================ */
+.faq-section {
+  background: var(--c-bg2);
+  padding-block: var(--space-20);
+  border-top: 1px solid var(--c-border);
+}
+[data-theme="dark"] .faq-section { background: var(--c-bg2); }
+
+.faq-section__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
+}
+
+.faq-section__title {
+  font-size: var(--text-3xl); font-weight: 700;
+  color: var(--c-text); letter-spacing: var(--tracking-tight);
+}
+
+.faq-separator {
+  display: flex; align-items: center; gap: var(--space-3);
+}
+.faq-separator__line {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  border-radius: 2px;
+}
+.faq-separator__line.right {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.faq-separator__icon { font-size: 1rem; color: var(--green-accent); }
+
+.faq-list {
+  max-width: 760px; margin-inline: auto;
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+
+.faq-item {
+  background: var(--c-card);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--dur-normal) var(--ease-smooth),
+              border-color var(--dur-normal) var(--ease-smooth);
+}
+.faq-item.open {
+  border-color: var(--green-accent);
+  box-shadow: var(--shadow-sm);
+}
+[data-theme="dark"] .faq-item.open { border-color: rgba(82,183,136,.4); }
+
+.faq-item__trigger {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  font-size: var(--text-base); font-weight: 600; color: var(--c-text);
+  text-align: left; gap: var(--space-4);
+  cursor: pointer; background: none; border: none; font-family: inherit;
+  transition: color var(--dur-normal) var(--ease-smooth);
+}
+.faq-item.open .faq-item__trigger { color: var(--green-main); }
+[data-theme="dark"] .faq-item.open .faq-item__trigger { color: var(--green-accent); }
+
+.faq-item__chevron {
+  width: 20px; height: 20px; flex-shrink: 0;
+  color: var(--c-muted);
+  transition: transform var(--dur-normal) var(--ease-spring), color var(--dur-normal) var(--ease-smooth);
+}
+.faq-item.open .faq-item__chevron {
+  transform: rotate(180deg); color: var(--green-accent);
+}
+
+.faq-item__body {
+  max-height: 0; overflow: hidden;
+  transition: max-height var(--dur-medium) var(--ease-smooth),
+              padding var(--dur-medium) var(--ease-smooth);
+}
+.faq-item.open .faq-item__body { max-height: 300px; }
+
+.faq-item__answer {
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: var(--text-sm); color: var(--c-text2);
+  line-height: var(--leading-relaxed);
+  border-top: 1px solid var(--c-border);
+  padding-top: var(--space-4);
+}
+[data-theme="dark"] .faq-item__answer { border-color: var(--c-border); }
+
+@media (max-width: 767px) {
+  .faq-section { padding-block: var(--space-12); }
+  .faq-section__header { margin-bottom: var(--space-8); }
+  .faq-item__trigger { padding: var(--space-4); font-size: .9rem; }
+  .faq-item__answer { padding: 0 var(--space-4) var(--space-4); padding-top: var(--space-3); }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--c-bg);
+  border-top: 1px solid var(--c-border);
+  padding-top: var(--space-16);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1.6fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+@media (max-width: 1023px) {
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .footer__brand { grid-column: span 2; }
+  .footer__newsletter { grid-column: span 2; }
+}
+@media (max-width: 767px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .footer__brand, .footer__newsletter { grid-column: span 1; }
+}
+
+.footer__slogan { font-size: var(--text-sm); color: var(--c-text2); line-height: var(--leading-relaxed); margin-block: var(--space-3) var(--space-4); }
+.footer__slogan span { color: var(--green-accent); font-weight: 600; }
+.footer__desc { font-size: var(--text-sm); color: var(--c-muted); line-height: var(--leading-relaxed); margin-bottom: var(--space-6); }
+
+.social-links { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.social-link {
+  width: 36px; height: 36px; background: var(--c-icon-bg);
+  border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  color: var(--c-text2); transition: var(--transition-base); border: 1px solid var(--c-border);
+}
+.social-link:hover { background: var(--green-soft); color: var(--green-main); border-color: var(--green-main); transform: translateY(-2px); }
+[data-theme="dark"] .social-link:hover { color: var(--green-accent); border-color: var(--green-accent); background: rgba(82,183,136,.1); }
+
+.footer__col h4 {
+  font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--c-text); margin-bottom: var(--space-4); padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--green-accent); display: inline-block;
+}
+.footer__col ul { display: flex; flex-direction: column; gap: var(--space-3); }
+.footer__col ul a { font-size: var(--text-sm); color: var(--c-muted); transition: color var(--dur-normal) var(--ease-smooth); }
+.footer__col ul a:hover { color: var(--green-main); }
+[data-theme="dark"] .footer__col ul a:hover { color: var(--green-accent); }
+
+.footer__newsletter-title { font-size: .85rem; font-weight: 700; color: var(--c-text); margin-bottom: var(--space-4); }
+.newsletter-form { display: flex; gap: var(--space-2); margin-bottom: var(--space-4); }
+.newsletter-input {
+  flex: 1; min-width: 0; padding: .75rem var(--space-4);
+  font-family: inherit; font-size: var(--text-sm);
+  background: var(--c-bg); color: var(--c-text);
+  border: 1.5px solid var(--c-border); border-radius: var(--radius-md);
+  transition: var(--transition-base); min-height: 44px; outline: none;
+}
+.newsletter-input::placeholder { color: var(--c-muted); }
+.newsletter-input:focus { border-color: var(--green-main); box-shadow: 0 0 0 3px rgba(30,92,58,.1); }
+[data-theme="dark"] .newsletter-input { background: var(--c-bg2); }
+
+.newsletter-btn {
+  background: var(--green-main); color: #fff; border-radius: var(--radius-md);
+  padding: .75rem var(--space-4); font-size: var(--text-sm); font-weight: 600;
+  white-space: nowrap; min-height: 44px; transition: var(--transition-hover);
+  font-family: inherit; cursor: pointer;
+}
+.newsletter-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+[data-theme="dark"] .newsletter-btn { background: var(--green-accent); color: #060F0A; }
+
+.sustain-card {
+  display: flex; align-items: flex-start; gap: var(--space-3);
+  padding: var(--space-4); background: var(--c-icon-bg);
+  border-radius: var(--radius-md); border: 1px solid var(--c-border);
+  cursor: pointer; transition: var(--transition-hover);
+}
+.sustain-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.sustain-icon {
+  width: 36px; height: 36px; flex-shrink: 0; background: var(--c-bg);
+  border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--c-border);
+}
+.sustain-icon [data-lucide] { width: 16px; height: 16px; color: var(--green-main); }
+[data-theme="dark"] .sustain-icon [data-lucide] { color: var(--green-accent); }
+.sustain-text h5 { font-size: .8rem; font-weight: 700; color: var(--c-text); margin-bottom: 2px; }
+.sustain-text p  { font-size: .72rem; color: var(--c-muted); line-height: 1.4; }
+.sustain-arrow { margin-left: auto; color: var(--c-muted); flex-shrink: 0; align-self: center; }
+.sustain-arrow [data-lucide] { width: 14px; height: 14px; }
+
+.footer__bar {
+  border-top: 1px solid var(--c-border); padding-block: var(--space-4);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4); flex-wrap: wrap;
+}
+.footer__copyright { font-size: var(--text-xs); color: var(--c-muted); }
+.footer__bar-center { display: flex; align-items: center; gap: var(--space-2); color: var(--gold); }
+.footer__love { font-size: var(--text-xs); color: var(--c-muted); display: flex; align-items: center; gap: 4px; }
+.footer__love .heart { color: #E8636A; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<header class="navbar" id="navbar" role="banner">
+  <div class="container">
+    <nav class="navbar__inner" aria-label="Navegação principal">
+      <a href="index.html" class="logo" aria-label="NutriVitalis — Voltar à página inicial">
+        <img src="logo.png" alt="NutriVitalis logo" style="height:98px; width:auto; object-fit:contain;">
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+        <li><a href="como-funciona.html">Como funciona</a></li>
+        <li><a href="planos.html">Planos</a></li>
+        <li><a href="recursos.html">Recursos</a></li>
+        <li><a href="sobre-nos.html">Sobre</a></li>
+        <li><a href="contato.html" class="active" aria-current="page">Contato</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="theme-toggle" id="themeToggle" role="group" aria-label="Alternar tema">
+          <button class="theme-toggle__btn active" id="btnLight" aria-label="Tema claro" title="Tema claro">☀️</button>
+          <button class="theme-toggle__btn" id="btnDark" aria-label="Tema escuro" title="Tema escuro">🌙</button>
+        </div>
+        <a href="#" class="btn btn-primary" aria-label="Começar agora">Quero começar</a>
+      </div>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer">
+        <i data-lucide="menu" style="width:22px;height:22px;stroke-width:1.8"></i>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+<aside class="drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <div class="drawer__head">
+    <a href="index.html" class="logo" aria-label="NutriVitalis">
+      <img src="logo.png" alt="NutriVitalis logo" style="height:98px; width:auto; object-fit:contain;">
+    </a>
+    <button class="drawer__close" id="drawerClose" aria-label="Fechar menu">
+      <i data-lucide="x" style="width:20px;height:20px;stroke-width:1.8"></i>
+    </button>
+  </div>
+
+  <nav class="drawer__nav" aria-label="Menu mobile">
+    <a href="index.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="home" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Início
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="como-funciona.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="brain-circuit" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Como funciona
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="planos.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="layout-grid" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Planos
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="recursos.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="star" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Recursos
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="sobre-nos.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="users" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Sobre nós
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="blog.html">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="file-text" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Blog
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+    <a href="contato.html" class="active" aria-current="page">
+      <span style="display:flex;align-items:center;gap:12px">
+        <span class="nav-icon"><i data-lucide="message-square" style="width:18px;height:18px;stroke-width:1.5"></i></span>
+        Contato
+      </span>
+      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
+    </a>
+  </nav>
+
+  <div class="drawer__footer">
+    <div class="drawer__theme-row">
+      <span class="drawer__theme-label">Tema</span>
+      <div class="theme-toggle" role="group" aria-label="Tema">
+        <button class="theme-toggle__btn" id="btnLightDrawer" aria-label="Tema claro">☀️</button>
+        <button class="theme-toggle__btn" id="btnDarkDrawer" aria-label="Tema escuro">🌙</button>
+      </div>
+    </div>
+    <a href="#" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
+    <a href="#" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      </svg>
+      Começar agora
+    </a>
+    <div class="drawer__tagline">
+      <span class="drawer__tagline-icon">✨</span>
+      <div class="drawer__tagline-text">
+        <div class="drawer__tagline-title">Transforme sua saúde com IA</div>
+        <div class="drawer__tagline-sub">Nutrição personalizada. Resultados reais.</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero-contato" aria-label="Hero Contato">
+  <div class="hero-contato__bg-deco" aria-hidden="true">
+    <svg class="hd1" viewBox="0 0 200 200" fill="none">
+      <path d="M100 20 C130 30, 170 60, 160 100 C150 140, 110 160, 80 150 C50 140, 40 110, 50 80 C60 50, 80 30, 100 20Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+      <path d="M100 20 C95 70, 90 120, 80 150" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="hd2" viewBox="0 0 200 200" fill="none">
+      <path d="M100 20 C130 30, 170 60, 160 100 C150 140, 110 160, 80 150 C50 140, 40 110, 50 80 C60 50, 80 30, 100 20Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    </svg>
+    <svg class="hd3" viewBox="0 0 200 200" fill="none">
+      <path d="M100 20 C130 30, 170 60, 160 100 C150 140, 110 160, 80 150 C50 140, 40 110, 50 80 C60 50, 80 30, 100 20Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-contato__inner">
+      <div class="hero-contato__eyebrow reveal">
+        <span class="hero-contato__dot" aria-hidden="true"></span>
+        Contato
+      </div>
+      <h1 class="hero-contato__title reveal reveal-d1">
+        Fale com a <span class="hero-contato__title-accent">gente.</span>
+      </h1>
+      <div class="hero-contato__deco-line reveal reveal-d2" aria-hidden="true"></div>
+      <p class="hero-contato__sub reveal reveal-d2">
+        Estamos aqui para ajudar. Resposta em até 24 horas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LAYOUT DOIS-COLUNAS
+     ============================================================ -->
+<section class="contato-section" aria-label="Formulário de contato e informações">
+  <div class="container">
+    <div class="contato-grid">
+
+      <!-- Coluna esquerda: Formulário -->
+      <div class="contato-col-form reveal">
+        <div class="form-card">
+          <h2 class="form-card__title">Envie sua mensagem</h2>
+
+          <form id="contatoForm" novalidate aria-label="Formulário de contato">
+
+            <!-- Nome completo -->
+            <div class="form-group">
+              <label for="nome">Nome completo</label>
+              <div class="input-wrap">
+                <input
+                  class="form-input"
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Seu nome"
+                  autocomplete="name"
+                  aria-required="true"
+                />
+                <i data-lucide="user" class="input-icon" aria-hidden="true"></i>
+              </div>
+              <span class="field-msg error" id="nome-error" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" style="width:13px;height:13px;flex-shrink:0"></i>
+                Por favor, informe seu nome.
+              </span>
+            </div>
+
+            <!-- E-mail -->
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <div class="input-wrap">
+                <input
+                  class="form-input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="seu@email.com"
+                  autocomplete="email"
+                  aria-required="true"
+                />
+                <i data-lucide="mail" class="input-icon" aria-hidden="true"></i>
+              </div>
+              <span class="field-msg error" id="email-error" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" style="width:13px;height:13px;flex-shrink:0"></i>
+                <span id="email-error-text">Por favor, informe um e-mail válido.</span>
+              </span>
+            </div>
+
+            <!-- Assunto -->
+            <div class="form-group form-group--select">
+              <label for="assunto">Assunto</label>
+              <div class="input-wrap">
+                <select
+                  class="form-select"
+                  id="assunto"
+                  name="assunto"
+                  aria-required="true"
+                >
+                  <option value="" disabled selected>Selecione um assunto</option>
+                  <option value="duvida">Dúvida geral</option>
+                  <option value="suporte">Suporte técnico</option>
+                  <option value="planos">Planos e pagamentos</option>
+                  <option value="parceria">Parceria</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <span class="field-msg error" id="assunto-error" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" style="width:13px;height:13px;flex-shrink:0"></i>
+                Por favor, selecione um assunto.
+              </span>
+            </div>
+
+            <!-- Mensagem -->
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <div class="input-wrap textarea-wrap">
+                <textarea
+                  class="form-textarea"
+                  id="mensagem"
+                  name="mensagem"
+                  rows="5"
+                  placeholder="Como podemos ajudar você?"
+                  aria-required="true"
+                ></textarea>
+                <i data-lucide="message-square" class="input-icon" aria-hidden="true"></i>
+              </div>
+              <span class="field-msg error" id="mensagem-error" role="alert" aria-live="polite">
+                <i data-lucide="alert-circle" style="width:13px;height:13px;flex-shrink:0"></i>
+                Por favor, escreva sua mensagem.
+              </span>
+            </div>
+
+            <!-- Botão -->
+            <button type="submit" class="btn btn-primary btn-submit" aria-label="Enviar mensagem">
+              Enviar mensagem →
+            </button>
+
+            <!-- Feedback global -->
+            <div class="form-feedback success" id="feedbackSuccess" role="status" aria-live="polite">
+              <i data-lucide="check-circle-2" style="width:20px;height:20px;flex-shrink:0"></i>
+              Mensagem enviada! Respondemos em até 24 horas nos dias úteis.
+            </div>
+            <div class="form-feedback error" id="feedbackError" role="alert" aria-live="assertive">
+              <i data-lucide="alert-triangle" style="width:20px;height:20px;flex-shrink:0"></i>
+              ⚠ Algo deu errado. Verifique os campos e tente novamente.
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Coluna direita: Informações -->
+      <div class="contato-col-info">
+        <div class="info-stack">
+
+          <!-- Card 1: Resposta rápida -->
+          <div class="info-card info-card--green reveal">
+            <div class="info-card__icon-wrap" aria-hidden="true">
+              <i data-lucide="clock" style="color:var(--green-main)"></i>
+            </div>
+            <div class="info-card__body">
+              <span class="info-card__title">Resposta rápida</span>
+              <span class="info-card__text">Respondemos em até 24 horas nos dias úteis.</span>
+            </div>
+          </div>
+
+          <!-- Card 2: E-mail -->
+          <div class="info-card reveal reveal-d1">
+            <div class="info-card__icon-wrap" aria-hidden="true">
+              <i data-lucide="mail"></i>
+            </div>
+            <div class="info-card__body">
+              <span class="info-card__title">E-mail</span>
+              <a href="mailto:contato@nutrivitalis.com" class="info-card__text" style="color:var(--green-main);font-weight:600;transition:opacity .2s">contato@nutrivitalis.com</a>
+            </div>
+          </div>
+
+          <!-- Card 3: Chat no app -->
+          <div class="info-card reveal reveal-d2">
+            <div class="info-card__icon-wrap" aria-hidden="true">
+              <i data-lucide="message-circle"></i>
+            </div>
+            <div class="info-card__body">
+              <span class="info-card__title">Chat ao vivo</span>
+              <span class="info-card__text">Chat disponível no app para assinantes.</span>
+            </div>
+          </div>
+
+          <!-- Card destaque IA -->
+          <div class="info-card info-card--dark reveal reveal-d3">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="info-card__icon-wrap" aria-hidden="true">
+                <i data-lucide="sparkles" style="color:#C9A84C"></i>
+              </div>
+              <div class="info-card__body">
+                <span class="info-card__title">Transforme sua saúde com IA</span>
+              </div>
+            </div>
+            <p class="info-card__text" style="margin-left:0">
+              Nutrição personalizada. Resultados reais.
+            </p>
+            <a href="#" class="btn-white" aria-label="Começar agora com a NutriVitalis">
+              Começar agora
+              <i data-lucide="arrow-right" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ ACORDEÃO
+     ============================================================ -->
+<section class="faq-section" aria-label="Perguntas frequentes">
+  <div class="container">
+
+    <div class="faq-section__header reveal">
+      <h2 class="faq-section__title">Dúvidas comuns</h2>
+      <div class="faq-separator" aria-hidden="true">
+        <span class="faq-separator__line"></span>
+        <span class="faq-separator__icon">🌿</span>
+        <span class="faq-separator__line right"></span>
+      </div>
+    </div>
+
+    <div class="faq-list" role="list">
+
+      <!-- FAQ 1 -->
+      <div class="faq-item reveal reveal-d1" role="listitem">
+        <button
+          class="faq-item__trigger"
+          aria-expanded="false"
+          aria-controls="faq-body-1"
+          id="faq-trigger-1"
+        >
+          Como funciona o suporte da NutriVitalis?
+          <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-item__body" id="faq-body-1" role="region" aria-labelledby="faq-trigger-1">
+          <p class="faq-item__answer">
+            Nosso suporte funciona por e-mail e chat (disponível no app para assinantes). Respondemos todas as solicitações em até 24 horas nos dias úteis. Para questões urgentes relacionadas à sua saúde, entre em contato pelo chat do app — nossa equipe está preparada para orientar você com segurança e agilidade.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item reveal reveal-d2" role="listitem">
+        <button
+          class="faq-item__trigger"
+          aria-expanded="false"
+          aria-controls="faq-body-2"
+          id="faq-trigger-2"
+        >
+          Onde encontro minha fatura e histórico de pagamentos?
+          <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-item__body" id="faq-body-2" role="region" aria-labelledby="faq-trigger-2">
+          <p class="faq-item__answer">
+            Todas as suas faturas e o histórico completo de pagamentos ficam disponíveis diretamente no painel da sua conta, na seção "Financeiro". Você também recebe um e-mail de confirmação a cada cobrança realizada. Se precisar de uma segunda via, basta acessar o painel ou entrar em contato conosco.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item reveal reveal-d3" role="listitem">
+        <button
+          class="faq-item__trigger"
+          aria-expanded="false"
+          aria-controls="faq-body-3"
+          id="faq-trigger-3"
+        >
+          Como cancelo minha assinatura?
+          <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-item__body" id="faq-body-3" role="region" aria-labelledby="faq-trigger-3">
+          <p class="faq-item__answer">
+            Você pode cancelar sua assinatura a qualquer momento pelo painel da conta, em "Configurações → Assinatura → Cancelar plano". O cancelamento é imediato e você continua com acesso até o fim do período já pago. Sem burocracia, sem taxas adicionais. Sentiremos sua falta, mas respeitamos sua decisão!
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo" aria-label="Rodapé">
+  <div class="container">
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="NutriVitalis">
+          <img src="logo.png" alt="NutriVitalis logo" style="height:98px; width:auto; object-fit:contain;">
+        </a>
+        <p class="footer__slogan">Tecnologia e ciência a favor da <span>sua melhor versão.</span></p>
+        <p class="footer__desc">Plataforma de saúde personalizada com inteligência artificial que cria planos adaptados à sua rotina, seu corpo e seus objetivos.</p>
+        <div class="social-links" role="list" aria-label="Redes sociais">
+          <a href="#" class="social-link" aria-label="Instagram" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22.54 6.42A2.78 2.78 0 0 0 20.6 4.46C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42C1 8.15 1 12 1 12s0 3.85.46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96C23 15.85 23 12 23 12s0-3.85-.46-5.58z"/>
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn" role="listitem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Navegação</h4>
+        <ul role="list">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+          <li><a href="como-funciona.html">Como funciona</a></li>
+          <li><a href="planos.html">Planos</a></li>
+          <li><a href="recursos.html">Recursos</a></li>
+          <li><a href="sobre-nos.html">Sobre</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Suporte</h4>
+        <ul role="list">
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Perguntas frequentes</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul role="list">
+          <li><a href="#">Aviso médico</a></li>
+          <li><a href="#">Política de cookies</a></li>
+          <li><a href="#">LGPD</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__newsletter">
+        <p class="footer__newsletter-title">Receba dicas exclusivas e conteúdos sobre saúde</p>
+        <div class="newsletter-form" role="form" aria-label="Cadastro de newsletter">
+          <label for="emailNewsletter" class="sr-only">Seu melhor e-mail</label>
+          <input type="email" id="emailNewsletter" class="newsletter-input" placeholder="Seu melhor e-mail" autocomplete="email" />
+          <button class="newsletter-btn" type="button" onclick="handleNewsletter()">Cadastrar</button>
+        </div>
+        <div class="sustain-card" role="button" tabindex="0" aria-label="Saiba mais sobre sustentabilidade">
+          <div class="sustain-icon">
+            <i data-lucide="leaf" aria-hidden="true"></i>
+          </div>
+          <div class="sustain-text">
+            <h5>Sustentabilidade que faz parte da nossa missão</h5>
+            <p>A cada plano, apoiamos iniciativas que promovem saúde e bem-estar no planeta.</p>
+          </div>
+          <div class="sustain-arrow" aria-hidden="true">
+            <i data-lucide="chevron-right"></i>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.footer__grid -->
+
+    <div class="footer__bar">
+      <span class="footer__copyright">© 2025 NutriVitalis. Todos os direitos reservados.</span>
+      <div class="footer__bar-center" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="#B8922A" stroke-width="1.5" fill="rgba(184,146,42,.12)"/>
+          <path d="M18 6 C17 12, 16 18, 14 23" stroke="#B8922A" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="#B8922A" stroke-width="1.5" fill="none"/>
+          <path d="M16 24 L16 28" stroke="#B8922A" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="footer__love">
+        Feito com <span class="heart" aria-label="amor">♥</span> para transformar vidas
+      </span>
+    </div>
+
+  </div>
+</footer>
+
+</main>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  lucide.createIcons();
+  initTheme();
+  initNavbar();
+  initDrawer();
+  initScrollReveal();
+  initForm();
+  initFAQ();
+});
+
+/* ---- Tema ---- */
+function initTheme() {
+  const saved = localStorage.getItem('nv-theme');
+  if (saved) {
+    applyTheme(saved);
+  } else {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(prefersDark ? 'dark' : 'light');
+  }
+  window.matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', (e) => {
+      if (!localStorage.getItem('nv-theme')) applyTheme(e.matches ? 'dark' : 'light');
+    });
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('nv-theme', theme);
+
+  const btnLight  = document.getElementById('btnLight');
+  const btnDark   = document.getElementById('btnDark');
+  const btnLightD = document.getElementById('btnLightDrawer');
+  const btnDarkD  = document.getElementById('btnDarkDrawer');
+
+  if (theme === 'dark') {
+    btnLight.classList.remove('active');
+    btnDark.classList.add('active');
+    if (btnLightD) { btnLightD.classList.remove('active'); btnDarkD.classList.add('active'); }
+  } else {
+    btnLight.classList.add('active');
+    btnDark.classList.remove('active');
+    if (btnLightD) { btnLightD.classList.add('active'); btnDarkD.classList.remove('active'); }
+  }
+}
+
+document.getElementById('btnLight').addEventListener('click', () => applyTheme('light'));
+document.getElementById('btnDark').addEventListener('click',  () => applyTheme('dark'));
+const bLD = document.getElementById('btnLightDrawer');
+const bDD = document.getElementById('btnDarkDrawer');
+if (bLD) bLD.addEventListener('click', () => applyTheme('light'));
+if (bDD) bDD.addEventListener('click', () => applyTheme('dark'));
+
+/* ---- Navbar scroll ---- */
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* ---- Drawer mobile ---- */
+function initDrawer() {
+  const btn     = document.getElementById('hamburgerBtn');
+  const drawer  = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const close   = document.getElementById('drawerClose');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    btn.focus();
+  }
+
+  btn.addEventListener('click', openDrawer);
+  close.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  });
+}
+
+/* ---- Scroll Reveal ---- */
+function initScrollReveal() {
+  const items = document.querySelectorAll('.reveal');
+  if (!window.IntersectionObserver) {
+    items.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+  items.forEach(el => obs.observe(el));
+}
+
+/* ---- Formulário ---- */
+function initForm() {
+  const form        = document.getElementById('contatoForm');
+  const nomeInput   = document.getElementById('nome');
+  const emailInput  = document.getElementById('email');
+  const assuntoSel  = document.getElementById('assunto');
+  const msgTextarea = document.getElementById('mensagem');
+  const feedOk      = document.getElementById('feedbackSuccess');
+  const feedErr     = document.getElementById('feedbackError');
+
+  const fields = [
+    { el: nomeInput,   errId: 'nome-error',    validate: v => v.trim().length >= 2 },
+    { el: emailInput,  errId: 'email-error',   validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+    { el: assuntoSel,  errId: 'assunto-error', validate: v => v !== '' },
+    { el: msgTextarea, errId: 'mensagem-error',validate: v => v.trim().length >= 5 },
+  ];
+
+  // Real-time validation on blur
+  fields.forEach(({ el, errId, validate }) => {
+    el.addEventListener('blur', () => {
+      if (el.value !== '' || el === assuntoSel) validateField(el, errId, validate);
+    });
+    el.addEventListener('input', () => {
+      if (el.classList.contains('is-error')) validateField(el, errId, validate);
+    });
+  });
+
+  function validateField(el, errId, validate) {
+    const isValid = validate(el.value);
+    const errEl   = document.getElementById(errId);
+    el.classList.toggle('is-error', !isValid);
+    el.classList.toggle('is-valid', isValid);
+    errEl.classList.toggle('show', !isValid);
+    return isValid;
+  }
+
+  // Custom email error message
+  emailInput.addEventListener('blur', () => {
+    const v = emailInput.value.trim();
+    const errText = document.getElementById('email-error-text');
+    if (v === '') {
+      errText.textContent = 'Por favor, informe seu e-mail.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+      errText.textContent = 'E-mail inválido. Verifique e tente novamente.';
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Hide previous feedback
+    feedOk.classList.remove('show');
+    feedErr.classList.remove('show');
+
+    // Validate all
+    let allValid = true;
+    fields.forEach(({ el, errId, validate }) => {
+      const ok = validateField(el, errId, validate);
+      if (!ok) allValid = false;
+    });
+
+    if (!allValid) {
+      feedErr.classList.add('show');
+      // Focus first error field
+      const firstErr = form.querySelector('.is-error');
+      if (firstErr) firstErr.focus();
+      return;
+    }
+
+    // Simulated success
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.textContent = 'Enviar mensagem →';
+      btn.disabled = false;
+      feedOk.classList.add('show');
+      form.reset();
+      fields.forEach(({ el }) => {
+        el.classList.remove('is-valid', 'is-error');
+      });
+      lucide.createIcons();
+    }, 1200);
+  });
+}
+
+/* ---- FAQ Acordeão ---- */
+function initFAQ() {
+  const items = document.querySelectorAll('.faq-item');
+
+  items.forEach(item => {
+    const trigger = item.querySelector('.faq-item__trigger');
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      items.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-item__trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked (unless it was already open)
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Keyboard support
+    trigger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+}
+
+/* ---- Newsletter ---- */
+function handleNewsletter() {
+  const input = document.getElementById('emailNewsletter');
+  const val = input.value.trim();
+  if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    input.style.borderColor = '#D94F4F';
+    input.focus();
+    return;
+  }
+  input.style.borderColor = '#52B788';
+  input.value = '';
+  setTimeout(() => { input.style.borderColor = ''; }, 2000);
+}
+</script>
+</body>
+</html>
