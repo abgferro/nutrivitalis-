@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="light">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNH69BVEQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HNH69BVEQV');
+</script>
+<!-- Fim Google Analytics -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Blog — NutriVitalis</title>
@@ -868,6 +877,64 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </style>
 </head>
 <body>
+<div class="aviso-medico-bar" id="avisoMedico">
+  <div class="aviso-medico-bar__inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>A NutriVitalis é uma plataforma de orientação nutricional por IA e <strong>não substitui consulta com nutricionista ou médico habilitado.</strong></span>
+    <a href="aviso-medico.html">Saiba mais</a>
+    <button onclick="document.getElementById('avisoMedico').style.display='none'" aria-label="Fechar aviso">✕</button>
+  </div>
+</div>
+
+<style>
+.aviso-medico-bar {
+  width: 100%;
+  background: #EAF4EE;
+  border-bottom: 1px solid #C3E6CB;
+  padding: 8px var(--space-4);
+  position: relative;
+  z-index: 999;
+}
+.aviso-medico-bar__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #1E5C3A;
+  flex-wrap: wrap;
+}
+.aviso-medico-bar__inner strong { font-weight: 700; }
+.aviso-medico-bar__inner a {
+  color: #1E5C3A;
+  font-weight: 600;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.aviso-medico-bar__inner button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #1E5C3A;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .aviso-medico-bar {
+  background: rgba(30,92,58,.2);
+  border-bottom-color: rgba(82,183,136,.2);
+}
+[data-theme="dark"] .aviso-medico-bar__inner { color: #52B788; }
+[data-theme="dark"] .aviso-medico-bar__inner a { color: #52B788; }
+[data-theme="dark"] .aviso-medico-bar__inner button { color: #52B788; }
+@media (max-width: 767px) {
+  .aviso-medico-bar { padding: 8px var(--space-3); }
+  .aviso-medico-bar__inner { font-size: 0.72rem; gap: 6px; }
+}
+</style>
+
 
 <!-- ============================================================
      NAVBAR
@@ -894,7 +961,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <button class="theme-toggle__btn active" id="btnLight" aria-label="Tema claro" title="Tema claro">☀️</button>
           <button class="theme-toggle__btn" id="btnDark" aria-label="Tema escuro" title="Tema escuro">🌙</button>
         </div>
-        <a href="#" class="btn btn-primary" aria-label="Começar agora">Quero começar</a>
+        <a href="planos.html" class="btn btn-primary" aria-label="Começar agora">Quero começar</a>
       </div>
 
       <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer">
@@ -976,8 +1043,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <button class="theme-toggle__btn" id="btnDarkDrawer" aria-label="Tema escuro">🌙</button>
       </div>
     </div>
-    <a href="#" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
-    <a href="#" class="btn btn-outline">
+    <a href="index.html" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
+    <a href="planos.html" class="btn btn-outline">
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
         <path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -1368,7 +1435,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="footer__col">
         <h4>Suporte</h4>
         <ul role="list">
-          <li><a href="contato.html">Central de ajuda</a></li>
+          <li><a href="ajuda.html">Central de ajuda</a></li>
           <li><a href="como-funciona.html#faq">Perguntas frequentes</a></li>
           <li><a href="contato.html">Contato</a></li>
           <li><a href="termos.html">Termos de uso</a></li>
@@ -1387,10 +1454,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <div class="footer__newsletter">
         <p class="footer__newsletter-title">Receba dicas exclusivas e conteúdos sobre saúde</p>
-        <div class="newsletter-form" role="form" aria-label="Cadastro de newsletter">
-          <label for="emailInput" class="sr-only">Seu melhor e-mail</label>
-          <input type="email" id="emailInput" class="newsletter-input" placeholder="Seu melhor e-mail" autocomplete="email" />
-          <button class="newsletter-btn" type="button" onclick="handleNewsletter()">Cadastrar</button>
+        <form class="footer-newsletter" id="newsletterForm" onsubmit="submitNewsletter(event)">
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu melhor e-mail"
+            required
+            class="footer-newsletter__input newsletter-input"
+            id="newsletterEmail"
+          />
+          <button type="submit" class="btn btn-primary footer-newsletter__btn newsletter-btn">
+            Cadastrar
+          </button>
+        </form>
+        <div id="newsletter-success" style="display:none;color:#52B788;font-size:0.85rem;margin-top:8px;">
+          ✓ Cadastrado com sucesso! Bem-vindo à NutriVitalis.
+        </div>
+        <div id="newsletter-error" style="display:none;color:#e53e3e;font-size:0.85rem;margin-top:8px;">
+          Erro ao cadastrar. Tente novamente.
         </div>
         <div class="sustain-card" role="button" tabindex="0" aria-label="Saiba mais sobre sustentabilidade">
           <div class="sustain-icon">

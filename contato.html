@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="light">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HNH69BVEQV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HNH69BVEQV');
+</script>
+<!-- Fim Google Analytics -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Contato — NutriVitalis</title>
@@ -927,6 +936,64 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 </style>
 </head>
 <body>
+<div class="aviso-medico-bar" id="avisoMedico">
+  <div class="aviso-medico-bar__inner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>A NutriVitalis é uma plataforma de orientação nutricional por IA e <strong>não substitui consulta com nutricionista ou médico habilitado.</strong></span>
+    <a href="aviso-medico.html">Saiba mais</a>
+    <button onclick="document.getElementById('avisoMedico').style.display='none'" aria-label="Fechar aviso">✕</button>
+  </div>
+</div>
+
+<style>
+.aviso-medico-bar {
+  width: 100%;
+  background: #EAF4EE;
+  border-bottom: 1px solid #C3E6CB;
+  padding: 8px var(--space-4);
+  position: relative;
+  z-index: 999;
+}
+.aviso-medico-bar__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #1E5C3A;
+  flex-wrap: wrap;
+}
+.aviso-medico-bar__inner strong { font-weight: 700; }
+.aviso-medico-bar__inner a {
+  color: #1E5C3A;
+  font-weight: 600;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.aviso-medico-bar__inner button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #1E5C3A;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .aviso-medico-bar {
+  background: rgba(30,92,58,.2);
+  border-bottom-color: rgba(82,183,136,.2);
+}
+[data-theme="dark"] .aviso-medico-bar__inner { color: #52B788; }
+[data-theme="dark"] .aviso-medico-bar__inner a { color: #52B788; }
+[data-theme="dark"] .aviso-medico-bar__inner button { color: #52B788; }
+@media (max-width: 767px) {
+  .aviso-medico-bar { padding: 8px var(--space-3); }
+  .aviso-medico-bar__inner { font-size: 0.72rem; gap: 6px; }
+}
+</style>
+
 
 <!-- ============================================================
      NAVBAR
@@ -953,7 +1020,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
           <button class="theme-toggle__btn active" id="btnLight" aria-label="Tema claro" title="Tema claro">☀️</button>
           <button class="theme-toggle__btn" id="btnDark" aria-label="Tema escuro" title="Tema escuro">🌙</button>
         </div>
-        <a href="#" class="btn btn-primary" aria-label="Começar agora">Quero começar</a>
+        <a href="planos.html" class="btn btn-primary" aria-label="Começar agora">Quero começar</a>
       </div>
 
       <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileDrawer">
@@ -1035,8 +1102,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <button class="theme-toggle__btn" id="btnDarkDrawer" aria-label="Tema escuro">🌙</button>
       </div>
     </div>
-    <a href="#" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
-    <a href="#" class="btn btn-outline">
+    <a href="index.html" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
+    <a href="planos.html" class="btn btn-outline">
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
         <path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -1104,7 +1171,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="form-card">
           <h2 class="form-card__title">Envie sua mensagem</h2>
 
-          <form id="contatoForm" novalidate aria-label="Formulário de contato">
+          <form action="https://formspree.io/f/mzdwkaag" method="POST" class="contact-form" id="contactForm" novalidate>
 
             <!-- Nome completo -->
             <div class="form-group">
@@ -1192,19 +1259,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
               </span>
             </div>
 
+            <!-- Campos ocultos Formspree -->
+            <input type="hidden" name="_subject" value="Nova mensagem — NutriVitalis">
+            <input type="hidden" name="_language" value="pt">
+            <input type="text" name="_gotcha" style="display:none">
+
             <!-- Botão -->
             <button type="submit" class="btn btn-primary btn-submit" aria-label="Enviar mensagem">
               Enviar mensagem →
             </button>
 
-            <!-- Feedback global -->
-            <div class="form-feedback success" id="feedbackSuccess" role="status" aria-live="polite">
-              <i data-lucide="check-circle-2" style="width:20px;height:20px;flex-shrink:0"></i>
-              Mensagem enviada! Respondemos em até 24 horas nos dias úteis.
+            <!-- Feedback global Formspree -->
+            <div id="form-success" style="display:none" class="form-feedback form-feedback--success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="20 6 9 17 4 12"/></svg>
+              Mensagem enviada com sucesso! Respondemos em até 24 horas.
             </div>
-            <div class="form-feedback error" id="feedbackError" role="alert" aria-live="assertive">
-              <i data-lucide="alert-triangle" style="width:20px;height:20px;flex-shrink:0"></i>
-              ⚠ Algo deu errado. Verifique os campos e tente novamente.
+
+            <div id="form-error" style="display:none" class="form-feedback form-feedback--error">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Erro ao enviar. Tente novamente ou escreva para contato@nutrivitalis.com.br
             </div>
 
           </form>
@@ -1261,7 +1334,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
             <p class="info-card__text" style="margin-left:0">
               Nutrição personalizada. Resultados reais.
             </p>
-            <a href="#" class="btn-white" aria-label="Começar agora com a NutriVitalis">
+            <a href="planos.html" class="btn-white" aria-label="Começar agora com a NutriVitalis">
               Começar agora
               <i data-lucide="arrow-right" style="width:14px;height:14px;stroke-width:2" aria-hidden="true"></i>
             </a>
@@ -1417,7 +1490,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="footer__col">
         <h4>Suporte</h4>
         <ul role="list">
-          <li><a href="contato.html">Central de ajuda</a></li>
+          <li><a href="ajuda.html">Central de ajuda</a></li>
           <li><a href="como-funciona.html#faq">Perguntas frequentes</a></li>
           <li><a href="contato.html">Contato</a></li>
           <li><a href="termos.html">Termos de uso</a></li>
@@ -1436,10 +1509,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <div class="footer__newsletter">
         <p class="footer__newsletter-title">Receba dicas exclusivas e conteúdos sobre saúde</p>
-        <div class="newsletter-form" role="form" aria-label="Cadastro de newsletter">
-          <label for="emailNewsletter" class="sr-only">Seu melhor e-mail</label>
-          <input type="email" id="emailNewsletter" class="newsletter-input" placeholder="Seu melhor e-mail" autocomplete="email" />
-          <button class="newsletter-btn" type="button" onclick="handleNewsletter()">Cadastrar</button>
+        <form class="footer-newsletter" id="newsletterForm" onsubmit="submitNewsletter(event)">
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu melhor e-mail"
+            required
+            class="footer-newsletter__input newsletter-input"
+            id="newsletterEmail"
+          />
+          <button type="submit" class="btn btn-primary footer-newsletter__btn newsletter-btn">
+            Cadastrar
+          </button>
+        </form>
+        <div id="newsletter-success" style="display:none;color:#52B788;font-size:0.85rem;margin-top:8px;">
+          ✓ Cadastrado com sucesso! Bem-vindo à NutriVitalis.
+        </div>
+        <div id="newsletter-error" style="display:none;color:#e53e3e;font-size:0.85rem;margin-top:8px;">
+          Erro ao cadastrar. Tente novamente.
         </div>
         <div class="sustain-card" role="button" tabindex="0" aria-label="Saiba mais sobre sustentabilidade">
           <div class="sustain-icon">
@@ -1592,90 +1679,23 @@ function initScrollReveal() {
   items.forEach(el => obs.observe(el));
 }
 
-/* ---- Formulário ---- */
+/* ---- Formulário Formspree ---- */
 function initForm() {
-  const form        = document.getElementById('contatoForm');
-  const nomeInput   = document.getElementById('nome');
-  const emailInput  = document.getElementById('email');
-  const assuntoSel  = document.getElementById('assunto');
-  const msgTextarea = document.getElementById('mensagem');
-  const feedOk      = document.getElementById('feedbackSuccess');
-  const feedErr     = document.getElementById('feedbackError');
-
-  const fields = [
-    { el: nomeInput,   errId: 'nome-error',    validate: v => v.trim().length >= 2 },
-    { el: emailInput,  errId: 'email-error',   validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
-    { el: assuntoSel,  errId: 'assunto-error', validate: v => v !== '' },
-    { el: msgTextarea, errId: 'mensagem-error',validate: v => v.trim().length >= 5 },
-  ];
-
-  // Real-time validation on blur
-  fields.forEach(({ el, errId, validate }) => {
-    el.addEventListener('blur', () => {
-      if (el.value !== '' || el === assuntoSel) validateField(el, errId, validate);
-    });
-    el.addEventListener('input', () => {
-      if (el.classList.contains('is-error')) validateField(el, errId, validate);
-    });
-  });
-
-  function validateField(el, errId, validate) {
-    const isValid = validate(el.value);
-    const errEl   = document.getElementById(errId);
-    el.classList.toggle('is-error', !isValid);
-    el.classList.toggle('is-valid', isValid);
-    errEl.classList.toggle('show', !isValid);
-    return isValid;
-  }
-
-  // Custom email error message
-  emailInput.addEventListener('blur', () => {
-    const v = emailInput.value.trim();
-    const errText = document.getElementById('email-error-text');
-    if (v === '') {
-      errText.textContent = 'Por favor, informe seu e-mail.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-      errText.textContent = 'E-mail inválido. Verifique e tente novamente.';
-    }
-  });
-
-  form.addEventListener('submit', (e) => {
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-
-    // Hide previous feedback
-    feedOk.classList.remove('show');
-    feedErr.classList.remove('show');
-
-    // Validate all
-    let allValid = true;
-    fields.forEach(({ el, errId, validate }) => {
-      const ok = validateField(el, errId, validate);
-      if (!ok) allValid = false;
+    const form = e.target;
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
     });
-
-    if (!allValid) {
-      feedErr.classList.add('show');
-      // Focus first error field
-      const firstErr = form.querySelector('.is-error');
-      if (firstErr) firstErr.focus();
-      return;
-    }
-
-    // Simulated success
-    const btn = form.querySelector('.btn-submit');
-    btn.textContent = 'Enviando…';
-    btn.disabled = true;
-
-    setTimeout(() => {
-      btn.textContent = 'Enviar mensagem →';
-      btn.disabled = false;
-      feedOk.classList.add('show');
+    if (response.ok) {
+      document.getElementById('form-success').style.display = 'flex';
       form.reset();
-      fields.forEach(({ el }) => {
-        el.classList.remove('is-valid', 'is-error');
-      });
-      lucide.createIcons();
-    }, 1200);
+    } else {
+      document.getElementById('form-error').style.display = 'flex';
+    }
   });
 }
 
