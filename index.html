@@ -635,12 +635,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero__img-wrap {
   position: relative;
   width: 100%;
-  max-width: 460px;
+  max-width: 520px;
   height: auto;
   background: transparent;
-  overflow: hidden;
+  overflow: visible;
   display: block;
   z-index: 1;
+}
+
+.hero__img-wrap::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 90%;
+  background: radial-gradient(ellipse at center bottom, var(--green-soft) 0%, transparent 70%);
+  border-radius: 50% 50% 0 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .hero__img-wrap::before {
+  background: radial-gradient(ellipse at center bottom, rgba(82,183,136,0.12) 0%, transparent 70%);
 }
 
 .hero__img-wrap img {
@@ -649,6 +667,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: contain;
   object-position: bottom center;
   display: block;
+  position: relative;
+  z-index: 1;
   filter: drop-shadow(0 8px 32px rgba(30,92,58,.12));
 }
 
@@ -658,7 +678,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40%;
+  height: 35%;
   background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
   pointer-events: none;
   z-index: 2;
@@ -991,7 +1011,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero__cards-grid-mobile {
     grid-area: cards;
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-2);
     width: 100%;
     padding: 0;
@@ -1681,6 +1701,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <div class="hero__card hero__card--meal">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div class="card__label">Plano do dia</div><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--c-muted)"></i></div>
           <div class="meal-wrap"><div class="meal-img">🥗</div><div class="meal-info"><div class="meal-type">Almoço</div><div class="meal-name">Salmão grelhado com quinoa e legumes</div></div></div>
+        </div>
+        <div class="hero__card hero__card--wellbeing">
+          <div class="card__label">Bem-estar</div>
+          <div class="card__value" style="color:var(--green-accent);font-size:0.9rem">Excelente</div>
+          <div style="font-size:.65rem;color:var(--c-muted);margin-top:4px">Você está evoluindo muito bem!</div>
         </div>
       </div><!-- /.hero__cards-grid-mobile -->
 
