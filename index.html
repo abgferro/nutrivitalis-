@@ -636,7 +636,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-xl);
   border: none;
   background: transparent;
-  overflow: visible;
+  overflow: hidden;
   display: block;
   position: relative;
 }
@@ -650,6 +650,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   filter: drop-shadow(0 8px 32px rgba(30,92,58,.15));
 }
 
+.hero__img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+[data-theme="dark"] .hero__img-wrap::after {
+  background: linear-gradient(to top, var(--c-bg) 0%, transparent 100%);
+}
+
 .hero__img-placeholder {
   display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
   color: var(--green-main); opacity: .4;
@@ -659,12 +675,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .hero__img-placeholder [data-lucide] { width: 64px; height: 64px; }
 .hero__img-placeholder span { font-size: var(--text-sm); font-weight: 500; }
 
-/* Cards — empilhados verticalmente à direita da imagem */
+/* Cards — ocultos no desktop, exibidos em grid no mobile */
 .hero__cards-grid {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: var(--space-3);
   position: relative;
+}
+
+.hero__cards-grid-desktop { display: none; }
+.hero__cards-grid-mobile  { display: none; }
+
+@media (min-width: 768px) {
+  .hero__cards-grid-desktop { display: flex; flex-direction: column; gap: var(--space-3); }
+  .hero__cards-grid-mobile  { display: none; }
 }
 
 .hero__card {
@@ -744,33 +768,123 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .meal-type { font-weight: 700; color: var(--c-text); }
 .meal-name { color: var(--c-muted); font-size: .7rem; line-height: 1.3; }
 
-@media (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .hero__inner {
-    grid-template-columns: 1fr;
-  }
-  .hero__right {
-    grid-template-columns: 1fr;
-    order: 1;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
   }
   .hero__left {
-    order: -1;
+    order: 1;
+  }
+  .hero__right {
+    order: 2;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+    align-items: center;
   }
   .hero__img-wrap {
-    max-width: 280px;
-    margin-inline: auto;
+    max-width: 220px;
   }
   .hero__cards-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
   }
   .hero__card {
     min-width: 140px;
     max-width: 160px;
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8rem;
   }
-  .hero__title { font-size: clamp(2rem, 10vw, 2.8rem); }
-  .hero__badges { flex-direction: column; gap: var(--space-3); }
+  .hero__title {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+  .hero__badges {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .hero__features-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    padding-inline: 0;
+  }
+  .hero__left {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .hero__right {
+    order: 2;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    margin-right: 0;
+  }
+  .hero__img-wrap {
+    width: 100%;
+    max-width: 340px;
+    margin: 0;
+    overflow: visible;
+  }
+  .hero__cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .hero__card {
+    position: static !important;
+    animation: nv-float 4s ease-in-out infinite !important;
+    transform: none;
+    min-width: 180px;
+    max-width: 200px;
+    width: auto;
+    padding: var(--space-3) var(--space-4);
+    font-size: 1rem;
+  }
+  .hero__card--progress { animation-delay: 0s !important; }
+  .hero__card--hydration { animation-delay: 1.2s !important; }
+  .hero__card--meal { animation-delay: 2.4s !important; }
+  .hero__features-mobile {
+    display: none !important;
+  }
+  .hero__badges {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+  .hero__title {
+    font-size: clamp(2.8rem, 4vw, 3.8rem);
+    line-height: 1.1;
+  }
+  .hero__desc {
+    font-size: 1.05rem;
+  }
+  .hero__ctas {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+  .hero__ctas .btn {
+    width: auto;
+    font-size: 1rem;
+    padding: var(--space-4) var(--space-8);
+    min-height: auto;
+  }
 }
 
 @media (max-width: 767px) {
@@ -779,39 +893,44 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero__inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "left right"
+      "cards cards";
     gap: var(--space-2);
     align-items: flex-start;
     padding-top: var(--space-2);
-    padding-bottom: 0;
+    padding-bottom: var(--space-4);
     padding-inline: var(--space-3);
   }
 
   .hero__left {
-    order: 1;
+    grid-area: left;
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
   }
 
-  .hero__badges { display: none; }
-
   .hero__right {
-    order: 2;
+    grid-area: right;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 0;
     position: relative;
     margin-right: calc(-1 * var(--space-3));
+    overflow: hidden;
   }
+
+  .hero__badges { display: none; }
 
   .hero__img-wrap {
     width: 100%;
     max-width: 100%;
     margin: 0;
     position: relative;
-    max-height: none;
     height: auto;
+    overflow: hidden;
   }
 
   .hero__img-wrap img {
@@ -820,18 +939,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     object-fit: contain;
     object-position: top center;
     display: block;
+    transform: scale(1.22);
+    transform-origin: top right;
   }
 
-  .hero__img-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(to top, var(--c-bg) 20%, transparent);
-    pointer-events: none;
+  .hero__cards-grid {
+    grid-area: cards;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    box-sizing: border-box;
   }
+
+  .hero__cards-grid-desktop { display: none; }
+  .hero__cards-grid-mobile {
+    grid-area: cards;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    box-sizing: border-box;
+  }
+
+  .hero__features-mobile { display: none !important; }
 
   .hero__title {
     font-size: clamp(1.7rem, 7.5vw, 2.1rem);
@@ -853,107 +988,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     min-height: 48px;
   }
 
-  .hero__cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2);
-    width: 100%;
-    margin-top: var(--space-4);
-    padding: 0 var(--space-3);
-    box-sizing: border-box;
-  }
-
-  .hero__features-mobile {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2);
-    width: 100%;
-    margin-top: var(--space-2);
-    padding: 0 var(--space-3);
-    box-sizing: border-box;
-    padding-bottom: var(--space-6);
-  }
-
   .hero__card {
     position: static !important;
     animation: none !important;
     transform: none !important;
     min-width: unset;
+    max-width: unset;
     width: 100%;
     padding: var(--space-2);
     font-size: 0.7rem;
   }
 
-  .hero__feature-card {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-1);
-  }
-
-  .hero__feature-card [data-lucide] {
-    display: none;
-  }
-
-  .hero__feature-card .hero__feature-icon-wrap {
-    width: 44px;
-    height: 44px;
-    background: var(--green-soft);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .hero__feature-card .hero__feature-icon-wrap [data-lucide] {
-    display: block;
-    width: 20px;
-    height: 20px;
-    color: var(--green-main);
-  }
-
-  [data-theme="dark"] .hero__feature-card .hero__feature-icon-wrap {
-    background: rgba(82,183,136,.15);
-  }
-
-  [data-theme="dark"] .hero__feature-card .hero__feature-icon-wrap [data-lucide] {
-    color: var(--green-accent);
-  }
-
-  .hero__feature-card__title {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--c-text);
-    line-height: 1.3;
-  }
-
-  .hero__feature-card__desc {
-    display: none;
-  }
-
-  /* Card hidratação — texto em cima, anel embaixo */
   .hero__card--hydration .hydration-ring {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-1);
   }
 
-  .hero__card--hydration .hydration-info {
-    order: -1;
-  }
+  .hero__card--hydration .hydration-info { order: -1; }
 
   .hero__card--hydration .ring-wrap {
     width: 36px;
     height: 36px;
     margin-top: var(--space-1);
   }
+
   .card__label { font-size: 0.58rem; }
   .card__value { font-size: 0.7rem; flex-wrap: wrap; gap: 2px; }
   .sparkline svg { width: 100%; height: 22px; }
@@ -1584,85 +1643,52 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="hero__right">
         <!-- Imagem circular placeholder -->
         <div class="hero__img-wrap reveal reveal-d1" aria-label="Imagem ilustrativa de pessoa saudável">
-          <img src="hero-pessoa.png" 
-               alt="Mulher fitness segurando tigela de salada saudável"
-               style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+          <img src="hero-pessoa.png" alt="Mulher fitness segurando tigela de salada saudável" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
         </div>
-
-        <!-- Cards flutuantes — desktop ficam absolutos, mobile ficam em grid -->
-      </div><!-- /.hero__right -->
-
-    </div><!-- /.hero__inner -->
-
-    <div class="hero__cards-grid">
-
-          <!-- Card 1: Progresso -->
-          <div class="hero__card hero__card--progress reveal" aria-label="Seu progresso +18% nas últimas 4 semanas">
+        <!-- Cards versão DESKTOP — ocultos no mobile -->
+        <div class="hero__cards-grid-desktop">
+          <div class="hero__card hero__card--progress reveal">
             <div class="card__label">Seu progresso</div>
-            <div class="card__value">
-              Evolução semanal
-              <span class="card__badge-up">+18%</span>
-            </div>
-            <div class="sparkline">
-              <svg width="130" height="36" viewBox="0 0 130 36" fill="none" aria-hidden="true">
-                <polyline
-                  points="0,28 18,22 36,26 54,14 72,18 90,8 108,12 130,4"
-                  stroke="#52B788" stroke-width="2" fill="none"
-                  stroke-linecap="round" stroke-linejoin="round"
-                />
-                <!-- Área sob a linha -->
-                <path
-                  d="M0,28 18,22 36,26 54,14 72,18 90,8 108,12 130,4 L130,36 L0,36Z"
-                  fill="url(#sparkGrad)" opacity="0.18"
-                />
-                <defs>
-                  <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#52B788"/>
-                    <stop offset="100%" stop-color="#52B788" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+            <div class="card__value">Evolução semanal <span class="card__badge-up">+18%</span></div>
+            <div class="sparkline"><svg width="130" height="36" viewBox="0 0 130 36" fill="none"><polyline points="0,28 18,22 36,26 54,14 72,18 90,8 108,12 130,4" stroke="#52B788" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <div style="font-size:.68rem;color:var(--c-muted);margin-top:4px">Evolução nas últimas 4 semanas</div>
           </div>
-
-          <!-- Card 2: Hidratação -->
-          <div class="hero__card hero__card--hydration reveal reveal-d1" aria-label="Hidratação: 1.8 litros de 2.5, 72% concluído">
+          <div class="hero__card hero__card--hydration reveal reveal-d1">
             <div class="card__label">Hidratação</div>
             <div class="hydration-ring">
-              <div class="ring-wrap" aria-hidden="true">
-                <svg width="44" height="44" viewBox="0 0 44 44">
-                  <circle class="ring-track" cx="22" cy="22" r="17"/>
-                  <circle class="ring-fill" cx="22" cy="22" r="17" stroke-dasharray="107" stroke-dashoffset="30"/>
-                </svg>
-                <div class="ring-pct">72%</div>
-              </div>
-              <div class="hydration-info">
-                <div style="display:flex;align-items:center;gap:4px">
-                  <i data-lucide="droplets" class="drop-icon" style="width:14px;height:14px;color:#4FC3F7" aria-hidden="true"></i>
-                  <span class="hydration-val">1.8L</span>
-                </div>
-                <div class="hydration-sub">de 2.5L diários</div>
-              </div>
+              <div class="ring-wrap"><svg width="44" height="44" viewBox="0 0 44 44"><circle class="ring-track" cx="22" cy="22" r="17"/><circle class="ring-fill" cx="22" cy="22" r="17" stroke-dasharray="107" stroke-dashoffset="30"/></svg><div class="ring-pct">72%</div></div>
+              <div class="hydration-info"><div style="display:flex;align-items:center;gap:4px"><i data-lucide="droplets" style="width:14px;height:14px;color:#4FC3F7"></i><span class="hydration-val">1.8L</span></div><div class="hydration-sub">de 2.5L diários</div></div>
             </div>
           </div>
-
-          <!-- Card 3: Plano do dia -->
-          <div class="hero__card hero__card--meal reveal reveal-d2" aria-label="Plano do dia: Almoço — Salmão grelhado com quinoa e legumes">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-              <div class="card__label">Plano do dia</div>
-              <i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--c-muted)" aria-hidden="true"></i>
-            </div>
-            <div class="meal-wrap">
-              <div class="meal-img" aria-hidden="true">🥗</div>
-              <div class="meal-info">
-                <div class="meal-type">Almoço</div>
-                <div class="meal-name">Salmão grelhado com quinoa e legumes</div>
-              </div>
-            </div>
+          <div class="hero__card hero__card--meal reveal reveal-d2">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div class="card__label">Plano do dia</div><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--c-muted)"></i></div>
+            <div class="meal-wrap"><div class="meal-img">🥗</div><div class="meal-info"><div class="meal-type">Almoço</div><div class="meal-name">Salmão grelhado com quinoa e legumes</div></div></div>
           </div>
+        </div><!-- /.hero__cards-grid-desktop -->
+      </div><!-- /.hero__right -->
 
-    </div><!-- /.hero__cards-grid -->
+      <!-- Cards versão MOBILE — ocultos no desktop -->
+      <div class="hero__cards-grid-mobile">
+        <div class="hero__card hero__card--progress">
+          <div class="card__label">Seu progresso</div>
+          <div class="card__value">Evolução semanal <span class="card__badge-up">+18%</span></div>
+          <div class="sparkline"><svg width="130" height="36" viewBox="0 0 130 36" fill="none"><polyline points="0,28 18,22 36,26 54,14 72,18 90,8 108,12 130,4" stroke="#52B788" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div style="font-size:.68rem;color:var(--c-muted);margin-top:4px">Evolução nas últimas 4 semanas</div>
+        </div>
+        <div class="hero__card hero__card--hydration">
+          <div class="card__label">Hidratação</div>
+          <div class="hydration-ring">
+            <div class="ring-wrap"><svg width="44" height="44" viewBox="0 0 44 44"><circle class="ring-track" cx="22" cy="22" r="17"/><circle class="ring-fill" cx="22" cy="22" r="17" stroke-dasharray="107" stroke-dashoffset="30"/></svg><div class="ring-pct">72%</div></div>
+            <div class="hydration-info"><div style="display:flex;align-items:center;gap:4px"><i data-lucide="droplets" style="width:14px;height:14px;color:#4FC3F7"></i><span class="hydration-val">1.8L</span></div><div class="hydration-sub">de 2.5L diários</div></div>
+          </div>
+        </div>
+        <div class="hero__card hero__card--meal">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div class="card__label">Plano do dia</div><i data-lucide="chevron-right" style="width:14px;height:14px;color:var(--c-muted)"></i></div>
+          <div class="meal-wrap"><div class="meal-img">🥗</div><div class="meal-info"><div class="meal-type">Almoço</div><div class="meal-name">Salmão grelhado com quinoa e legumes</div></div></div>
+        </div>
+      </div><!-- /.hero__cards-grid-mobile -->
+
+    </div><!-- /.hero__inner -->
 
     <div class="hero__features-mobile">
           <div class="hero__feature-card">
