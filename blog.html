@@ -10,6 +10,7 @@
   gtag('config', 'G-HNH69BVEQV');
 </script>
 <!-- Fim Google Analytics -->
+<link rel="icon" type="image/png" href="logo.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Blog — NutriVitalis</title>
@@ -875,6 +876,49 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .footer__love { font-size: var(--text-xs); color: var(--c-muted); display: flex; align-items: center; gap: 4px; }
 .footer__love .heart { color: #E8636A; }
 </style>
+<style>
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-d1 { transition-delay: 0ms; }
+.reveal-d2 { transition-delay: 100ms; }
+.reveal-d3 { transition-delay: 200ms; }
+.reveal-d4 { transition-delay: 300ms; }
+.reveal-d5 { transition-delay: 400ms; }
+.reveal-d6 { transition-delay: 500ms; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+</style>
 </head>
 <body>
 <div class="aviso-medico-bar" id="avisoMedico">
@@ -948,7 +992,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
       <ul class="nav-links" role="list">
         <li><a href="index.html">Início</a></li>
-        <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+        <li><a href="recursos.html">Funcionalidades</a></li>
         <li><a href="como-funciona.html">Como funciona</a></li>
         <li><a href="planos.html">Planos</a></li>
         <li><a href="recursos.html">Recursos</a></li>
@@ -1424,7 +1468,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
         <h4>Navegação</h4>
         <ul role="list">
           <li><a href="index.html">Início</a></li>
-          <li><a href="index.html#funcionalidades">Funcionalidades</a></li>
+          <li><a href="recursos.html">Funcionalidades</a></li>
           <li><a href="como-funciona.html">Como funciona</a></li>
           <li><a href="planos.html">Benefícios</a></li>
           <li><a href="index.html#depoimentos">Depoimentos</a></li>
@@ -1715,6 +1759,83 @@ function handleNewsletter() {
   input.value = '';
   setTimeout(() => { input.style.borderColor = ''; }, 2000);
 }
+</script>
+<div class="cookie-banner" id="cookieBanner" style="display:none">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="flex-shrink:0;color:var(--green-main)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+      <span>Usamos cookies para melhorar sua experiência. Ao continuar navegando você concorda com nossa <a href="cookies.html">Política de Cookies</a> e <a href="privacidade.html">Política de Privacidade</a>.</span>
+    </div>
+    <div class="cookie-banner__actions">
+      <button class="btn btn-outline btn-sm" onclick="rejectCookies()">Recusar</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptCookies()">Aceitar</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--c-card);
+  border-top: 1px solid var(--c-border);
+  padding: var(--space-4);
+  z-index: 9999;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.1);
+}
+.cookie-banner__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.cookie-banner__text {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--c-text2);
+  line-height: 1.5;
+}
+.cookie-banner__text a {
+  color: var(--green-main);
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+@media (max-width: 767px) {
+  .cookie-banner__inner { flex-direction: column; }
+  .cookie-banner__actions { width: 100%; justify-content: flex-end; }
+}
+</style>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem('cookies-accepted', 'true');
+  document.getElementById('cookieBanner').style.display = 'none';
+  if(typeof gtag !== 'undefined') gtag('consent', 'update', { analytics_storage: 'granted' });
+}
+function rejectCookies() {
+  localStorage.setItem('cookies-accepted', 'false');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+window.addEventListener('DOMContentLoaded', function() {
+  if (!localStorage.getItem('cookies-accepted')) {
+    document.getElementById('cookieBanner').style.display = 'block';
+  }
+});
 </script>
 </body>
 </html>
