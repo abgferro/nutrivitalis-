@@ -1398,6 +1398,31 @@ html, body {
 .sustain-arrow { margin-left: auto; color: var(--c-muted); flex-shrink: 0; align-self: center; }
 .sustain-arrow [data-lucide] { width: 14px; height: 14px; }
 
+/* Footer aviso médico */
+.footer__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--c-border);
+  margin-top: var(--space-4);
+  font-size: 0.75rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+
+.footer__aviso strong { color: var(--c-text2); font-weight: 600; }
+
+.footer__aviso a {
+  color: var(--green-main);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .footer__aviso a { color: var(--green-accent); }
+
+.footer__aviso [data-lucide] { color: var(--c-muted); margin-top: 1px; }
+
 /* Footer bottom bar */
 .footer__bar {
   border-top: 1px solid var(--c-border);
@@ -1462,63 +1487,9 @@ html, body {
 </style>
 </head>
 <body>
-<div class="aviso-medico-bar" id="avisoMedico">
-  <div class="aviso-medico-bar__inner">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <span>A NutriVitalis é uma plataforma de orientação nutricional por IA e <strong>não substitui consulta com nutricionista ou médico habilitado.</strong></span>
-    <a href="aviso-medico.html">Saiba mais</a>
-    <button onclick="document.getElementById('avisoMedico').style.display='none'" aria-label="Fechar aviso">✕</button>
-  </div>
-</div>
 
-<style>
-.aviso-medico-bar {
-  width: 100%;
-  background: #EAF4EE;
-  border-bottom: 1px solid #C3E6CB;
-  padding: 8px var(--space-4);
-  position: relative;
-  z-index: 999;
-}
-.aviso-medico-bar__inner {
-  max-width: 1200px;
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
-  color: #1E5C3A;
-  flex-wrap: wrap;
-}
-.aviso-medico-bar__inner strong { font-weight: 700; }
-.aviso-medico-bar__inner a {
-  color: #1E5C3A;
-  font-weight: 600;
-  text-decoration: underline;
-  white-space: nowrap;
-}
-.aviso-medico-bar__inner button {
-  margin-left: auto;
-  background: none;
-  border: none;
-  color: #1E5C3A;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 0 4px;
-  flex-shrink: 0;
-}
-[data-theme="dark"] .aviso-medico-bar {
-  background: rgba(30,92,58,.2);
-  border-bottom-color: rgba(82,183,136,.2);
-}
-[data-theme="dark"] .aviso-medico-bar__inner { color: #52B788; }
-[data-theme="dark"] .aviso-medico-bar__inner a { color: #52B788; }
-[data-theme="dark"] .aviso-medico-bar__inner button { color: #52B788; }
-@media (max-width: 767px) {
-  .aviso-medico-bar { padding: 8px var(--space-3); }
-  .aviso-medico-bar__inner { font-size: 0.72rem; gap: 6px; }
-}
-</style>
+
+
 
 
 <!-- ============================================================
@@ -2206,6 +2177,12 @@ html, body {
       </div>
 
     </div><!-- /.footer__grid -->
+
+    <!-- Aviso médico -->
+    <div class="footer__aviso">
+      <i data-lucide="info" style="width:14px;height:14px;flex-shrink:0;margin-top:1px"></i>
+      <span>A NutriVitalis é uma plataforma de orientação nutricional por IA e <strong>não substitui consulta com nutricionista ou médico habilitado.</strong> <a href="aviso-medico.html">Saiba mais</a></span>
+    </div>
 
     <!-- Bottom bar -->
     <div class="footer__bar">
