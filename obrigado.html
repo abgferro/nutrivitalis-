@@ -418,89 +418,97 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   backdrop-filter: blur(4px);
 }
 .drawer-overlay.open { opacity: 1; pointer-events: all; }
-
 .drawer {
   position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(340px, 90vw);
-  background: var(--c-bg);
+  width: min(320px, 88vw);
+  background: var(--c-card);
   z-index: var(--z-modal);
   transform: translateX(100%);
   transition: transform var(--dur-slow) var(--ease-spring);
   display: flex; flex-direction: column;
   overflow-y: auto;
+  box-shadow: -8px 0 40px rgba(0,0,0,.15);
+  border-radius: 16px 0 0 16px;
 }
 .drawer.open { transform: translateX(0); }
-
 .drawer__head {
   display: flex; align-items: center; justify-content: space-between;
-  padding: var(--space-4) var(--space-6);
+  padding: var(--space-4) var(--space-4);
   border-bottom: 1px solid var(--c-border);
-  height: 72px;
+  min-height: 68px; flex-shrink: 0;
 }
 .drawer__close {
-  width: 44px; height: 44px;
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   border-radius: var(--radius-sm);
   color: var(--c-text2);
   transition: var(--transition-base);
   cursor: pointer;
+  border: 1px solid var(--c-border);
+  margin-right: var(--space-1);
+  flex-shrink: 0;
 }
 .drawer__close:hover { background: var(--c-bg2); color: var(--c-text); }
-
-.drawer__nav { padding: var(--space-4) var(--space-4); flex: 1; }
+.drawer__nav {
+  padding: var(--space-3) var(--space-3);
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; gap: 2px;
+}
 .drawer__nav a {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 14px var(--space-4);
+  padding: 11px var(--space-3);
   border-radius: var(--radius-md);
-  font-size: 1rem; font-weight: 500;
+  font-size: 0.9rem; font-weight: 500;
   color: var(--c-text2);
   transition: var(--transition-base);
   gap: var(--space-3);
 }
-.drawer__nav a .nav-icon { color: var(--green-main); flex-shrink: 0; }
-.drawer__nav a:hover, .drawer__nav a.active {
-  background: var(--green-soft);
-  color: var(--green-main);
+.drawer__nav a .nav-icon {
+  color: var(--green-main); flex-shrink: 0;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
 }
+[data-theme="dark"] .drawer__nav a .nav-icon { color: var(--green-accent); }
+.drawer__nav a:hover { background: var(--green-soft); color: var(--green-main); }
+.drawer__nav a.active { background: var(--green-soft); color: var(--green-main); font-weight: 700; }
 [data-theme="dark"] .drawer__nav a:hover,
-[data-theme="dark"] .drawer__nav a.active {
-  background: rgba(82,183,136,.1);
-  color: var(--green-accent);
-}
-.drawer__nav a.active { font-weight: 700; }
-.drawer__nav .chevron { opacity: .4; }
-
+[data-theme="dark"] .drawer__nav a.active { background: rgba(82,183,136,.12); color: var(--green-accent); }
+.drawer__nav a.active .nav-icon { color: var(--green-main); }
+[data-theme="dark"] .drawer__nav a.active .nav-icon { color: var(--green-accent); }
+.drawer__nav .chevron { opacity: .3; margin-left: auto; flex-shrink: 0; }
+.drawer__nav a:hover .chevron, .drawer__nav a.active .chevron { opacity: .6; }
+.drawer__spacer { flex: 1; min-height: var(--space-4); }
 .drawer__footer {
-  padding: var(--space-6);
+  padding: var(--space-4) var(--space-4);
   border-top: 1px solid var(--c-border);
   display: flex; flex-direction: column; gap: var(--space-3);
+  flex-shrink: 0;
 }
-.drawer__footer .btn { width: 100%; justify-content: center; }
-
+.drawer__footer .btn { width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.75rem 1.25rem; border-radius: var(--radius-full); }
+.drawer__theme-row { display: flex; align-items: center; justify-content: space-between; padding: var(--space-2) var(--space-1); }
+.drawer__theme-label { font-size: 0.82rem; font-weight: 500; color: var(--c-muted); }
 .drawer__tagline {
-  margin-top: var(--space-2);
   display: flex; align-items: flex-start; gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-3);
   background: var(--green-soft);
   border-radius: var(--radius-md);
+  border: 1px solid rgba(82,183,136,.2);
 }
-.drawer__tagline-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-.drawer__tagline-text { font-size: var(--text-sm); }
-.drawer__tagline-title { font-weight: 700; color: var(--c-text); font-size: .85rem; }
-.drawer__tagline-sub { color: var(--c-text2); font-size: .78rem; }
-
-.drawer__theme-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 4px;
-  margin-bottom: 8px;
+[data-theme="dark"] .drawer__tagline { background: rgba(82,183,136,.08); border-color: rgba(82,183,136,.15); }
+.drawer__tagline-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+.drawer__tagline-title { font-weight: 700; color: var(--c-text); font-size: .8rem; }
+.drawer__tagline-sub { color: var(--c-text2); font-size: .72rem; margin-top: 2px; }
+.footer__aviso {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--c-border);
+  margin-top: var(--space-4);
+  font-size: 0.75rem; color: var(--c-muted); line-height: 1.5;
 }
-.drawer__theme-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--c-text2);
-}
+.footer__aviso strong { color: var(--c-text2); font-weight: 600; }
+.footer__aviso a { color: var(--green-main); text-decoration: underline; font-weight: 500; }
+[data-theme="dark"] .footer__aviso a { color: var(--green-accent); }
+.footer__aviso [data-lucide] { color: var(--c-muted); margin-top: 1px; }
 
 @media (max-width: 1023px) {
   .nav-links { display: none; }
@@ -1064,94 +1072,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 <!-- Mobile drawer overlay -->
 <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
-
 <!-- Mobile drawer -->
 <aside class="drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Menu de navegação">
   <div class="drawer__head">
     <a href="index.html" class="logo" aria-label="NutriVitalis">
-      <img src="logo.png" alt="NutriVitalis logo"
-           style="height:98px; width:auto; object-fit:contain;">
+      <img src="logo.png" alt="NutriVitalis logo" style="height:98px; width:auto; object-fit:contain;">
     </a>
     <button class="drawer__close" id="drawerClose" aria-label="Fechar menu">
       <i data-lucide="x" style="width:20px;height:20px;stroke-width:1.8"></i>
     </button>
   </div>
-
   <nav class="drawer__nav" aria-label="Menu mobile">
-    <a href="index.html" class="active">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="home" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Início
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="como-funciona.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="brain-circuit" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Como funciona
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="planos.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="layout-grid" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Planos
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="recursos.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="star" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Recursos
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="sobre-nos.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="users" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Sobre nós
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="blog.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="file-text" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Blog
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
-    <a href="contato.html">
-      <span style="display:flex;align-items:center;gap:12px">
-        <span class="nav-icon"><i data-lucide="message-square" style="width:18px;height:18px;stroke-width:1.5"></i></span>
-        Contato
-      </span>
-      <span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span>
-    </a>
+    <a href="index.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="home" style="width:18px;height:18px;stroke-width:1.5"></i></span>Início</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="como-funciona.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="brain-circuit" style="width:18px;height:18px;stroke-width:1.5"></i></span>Como funciona</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="planos.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="layout-grid" style="width:18px;height:18px;stroke-width:1.5"></i></span>Planos</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="recursos.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="star" style="width:18px;height:18px;stroke-width:1.5"></i></span>Recursos</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="sobre-nos.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="users" style="width:18px;height:18px;stroke-width:1.5"></i></span>Sobre nós</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="blog.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="file-text" style="width:18px;height:18px;stroke-width:1.5"></i></span>Blog</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
+    <a href="contato.html"><span style="display:flex;align-items:center;gap:12px"><span class="nav-icon"><i data-lucide="message-square" style="width:18px;height:18px;stroke-width:1.5"></i></span>Contato</span><span class="chevron"><i data-lucide="chevron-right" style="width:16px;height:16px;stroke-width:1.5"></i></span></a>
   </nav>
-
+  <div class="drawer__spacer"></div>
   <div class="drawer__footer">
-    <div class="drawer__theme-row">
-      <span class="drawer__theme-label">Tema</span>
-      <div class="theme-toggle" role="group" aria-label="Tema">
-        <button class="theme-toggle__btn" id="btnLightDrawer" aria-label="Tema claro">☀️</button>
-        <button class="theme-toggle__btn" id="btnDarkDrawer" aria-label="Tema escuro">🌙</button>
-      </div>
-    </div>
+    <div class="drawer__theme-row"><span class="drawer__theme-label">Tema</span><div class="theme-toggle" role="group" aria-label="Tema"><button class="theme-toggle__btn" id="btnLightDrawer" aria-label="Tema claro">☀️</button><button class="theme-toggle__btn" id="btnDarkDrawer" aria-label="Tema escuro">🌙</button></div></div>
     <a href="index.html" class="btn btn-primary"><i data-lucide="user" style="width:16px;height:16px"></i> Entrar na plataforma</a>
-    <a href="planos.html" class="btn btn-outline">
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
-      </svg>
-      Começar agora
-    </a>
-    <div class="drawer__tagline">
-      <span class="drawer__tagline-icon">✨</span>
-      <div class="drawer__tagline-text">
-        <div class="drawer__tagline-title">Transforme sua saúde com IA</div>
-        <div class="drawer__tagline-sub">Nutrição personalizada. Resultados reais.</div>
-      </div>
-    </div>
+    <a href="planos.html" class="btn btn-outline"><svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M18 6 C22 8, 27 13, 25 20 C23 24, 18 26, 14 23 C12 21, 12 16, 14 12 C15 9, 17 7, 18 6Z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 10 C9 11, 6 15, 7 20 C8 23, 11 24, 14 22" stroke="currentColor" stroke-width="1.5" fill="none"/></svg> Começar agora</a>
+    <div class="drawer__tagline"><span class="drawer__tagline-icon" style="color:#B8922A">✦</span><div class="drawer__tagline-text"><div class="drawer__tagline-title">Sua saúde em boas mãos 🌿</div><div class="drawer__tagline-sub">Planos inteligentes que evoluem com você.</div></div></div>
   </div>
 </aside>
 
@@ -1388,6 +1333,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       </div>
 
     </div><!-- /.footer__grid -->
+
+    <div class="footer__aviso">
+  <i data-lucide="info" style="width:14px;height:14px;flex-shrink:0;margin-top:1px"></i>
+  <span>A NutriVitalis é uma plataforma de orientação nutricional por IA e <strong>não substitui consulta com nutricionista ou médico habilitado.</strong> <a href="aviso-medico.html">Saiba mais</a></span>
+</div>
 
     <!-- Bottom bar -->
     <div class="footer__bar">
