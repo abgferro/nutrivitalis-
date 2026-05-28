@@ -238,37 +238,72 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .btn {
   display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 0.85rem 1.75rem;
   border-radius: var(--radius-full);
-  font-size: .9rem; font-weight: 600;
-  padding: .85rem 2rem;
-  transition: var(--transition-hover), background var(--dur-normal) var(--ease-smooth);
-  min-height: 44px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+              transform 0.2s ease, box-shadow 0.25s ease;
+  text-decoration: none;
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0px);
+}
+
 .btn-primary {
   background: var(--green-main);
   color: #fff;
-  box-shadow: 0 4px 18px rgba(30,92,58,.28);
+  box-shadow: 0 4px 16px rgba(30,92,58,.25);
 }
-.btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,92,58,.38); }
-.btn-primary:active { transform: translateY(0); transition: transform 80ms; }
+
+.btn-primary:hover {
+  background: var(--green-mid);
+  box-shadow: 0 8px 24px rgba(30,92,58,.35);
+  color: #fff;
+}
 
 [data-theme="dark"] .btn-primary {
   background: var(--green-accent);
-  color: #060F0A;
+  color: #0a1a0f;
+  box-shadow: 0 4px 16px rgba(82,183,136,.3);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: #6FCF97;
+  box-shadow: 0 8px 24px rgba(82,183,136,.45);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--green-main);
-  border: 1.5px solid var(--green-main);
+  border-color: var(--green-main);
+  box-shadow: none;
 }
-.btn-outline:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,92,58,.15); background: var(--green-soft); }
-.btn-outline:active { transform: translateY(0); }
+
+.btn-outline:hover {
+  background: var(--green-soft);
+  box-shadow: 0 4px 16px rgba(30,92,58,.12);
+  border-color: var(--green-mid);
+}
 
 [data-theme="dark"] .btn-outline {
   color: var(--green-accent);
   border-color: var(--green-accent);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background: rgba(82,183,136,.12);
+  box-shadow: 0 4px 16px rgba(82,183,136,.2);
 }
 
 /* ============================================================
@@ -693,6 +728,62 @@ html, body {
 .hero__badge [data-lucide] { color: var(--green-main); width: 16px; height: 16px; flex-shrink: 0; }
 [data-theme="dark"] .hero__badge [data-lucide] { color: var(--green-accent); }
 
+.hero__social-proof {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.hero__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.hero__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  margin-left: -8px;
+  flex-shrink: 0;
+}
+
+.hero__avatar:first-child { margin-left: 0; }
+
+[data-theme="dark"] .hero__avatar {
+  border-color: var(--c-bg);
+}
+
+.hero__stars {
+  color: #F59E0B;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.hero__social-proof__label {
+  font-size: 0.75rem;
+  color: var(--c-text2);
+  line-height: 1.3;
+}
+
+.hero__social-proof__label strong {
+  color: var(--c-text);
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .hero__social-proof { display: none; }
+}
+
 /* Hero right */
 .hero__right {
   position: relative;
@@ -816,17 +907,33 @@ html, body {
 
 .hero__card {
   position: static !important;
-  background: var(--c-card);
-  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
-  box-shadow: var(--shadow-md);
-  min-width: 180px;
-  max-width: 200px;
+  box-shadow: 0 8px 32px rgba(30,92,58,.10), 0 1px 0 rgba(255,255,255,0.8) inset;
+  z-index: 3;
+  width: clamp(160px, 18vw, 220px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   animation: nv-float 4s ease-in-out infinite;
-  transition: transform var(--dur-normal) var(--ease-spring), box-shadow var(--dur-normal) var(--ease-smooth);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-.hero__card:hover { transform: translateY(-4px) !important; box-shadow: var(--shadow-lg); }
+
+.hero__card:hover {
+  box-shadow: 0 16px 48px rgba(30,92,58,.18), 0 1px 0 rgba(255,255,255,0.9) inset;
+  transform: translateY(-3px) !important;
+}
+
+[data-theme="dark"] .hero__card {
+  background: rgba(20,40,25,0.75);
+  border: 1px solid rgba(82,183,136,0.18);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 1px 0 rgba(82,183,136,0.1) inset;
+}
+
+[data-theme="dark"] .hero__card:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,.45), 0 0 0 1px rgba(82,183,136,0.25);
+}
 
 .hero__card--progress  { animation-delay: 0s; }
 .hero__card--hydration { animation-delay: 1.2s; }
@@ -1227,6 +1334,9 @@ html, body {
   color: #EDE8DC;
   line-height: var(--leading-snug);
   margin-bottom: var(--space-6);
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
 }
 .dark-band__title .accent { color: #52B788; }
 .dark-band__leaf {
@@ -1506,13 +1616,14 @@ html, body {
       </a>
 
       <!-- Nav links desktop -->
-      <ul class="nav-links" role="list">
+            <ul class="nav-links" role="list">
         <li><a href="index.html" class="active">Início</a></li>
-        <li><a href="recursos.html">Funcionalidades</a></li>
         <li><a href="como-funciona.html">Como funciona</a></li>
-        <li><a href="planos.html">Benefícios</a></li>
+        <li><a href="planos.html">Planos</a></li>
         <li><a href="recursos.html">Recursos</a></li>
-        <li><a href="sobre-nos.html">Sobre</a></li>
+        <li><a href="sobre-nos.html">Sobre nós</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contato.html">Contato</a></li>
       </ul>
 
       <!-- Right side -->
@@ -1673,6 +1784,19 @@ html, body {
         <div class="hero__ctas reveal reveal-d3">
           <a href="planos.html" class="btn btn-primary">Quero começar agora <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
           <a href="como-funciona.html" class="btn btn-outline"><i data-lucide="play" style="width:14px;height:14px;fill:currentColor"></i> Ver como funciona</a>
+        </div>
+
+        <div class="hero__social-proof reveal reveal-d4">
+          <div class="hero__avatars" aria-hidden="true">
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#52B788,#1E5C3A)">J</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#B8922A,#8B6914)">R</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#4FC3F7,#0288D1)">A</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#EF9A9A,#C62828)">M</div>
+          </div>
+          <div class="hero__social-proof__text">
+            <div class="hero__stars" aria-label="Avaliação 4.9 de 5">★★★★★</div>
+            <div class="hero__social-proof__label"><strong>+50.000</strong> pessoas transformando sua saúde</div>
+          </div>
         </div>
 
         <div class="hero__badges reveal reveal-d4">
@@ -1838,6 +1962,21 @@ html, body {
   color: var(--c-text);
   margin-bottom: var(--space-3);
 }
+[data-theme="dark"] .section-title {
+  color: var(--c-text);
+}
+
+[data-theme="dark"] .depoimentos {
+  background: var(--c-bg);
+}
+
+[data-theme="dark"] .depoimentos .section-eyebrow {
+  color: var(--green-accent);
+}
+
+[data-theme="dark"] .depoimentos .section-subtitle {
+  color: var(--c-text2);
+}
 .section-divider {
   width: 48px; height: 3px;
   background: linear-gradient(90deg, var(--gold), transparent);
@@ -1860,57 +1999,106 @@ html, body {
 }
 .depoimento-card {
   background: var(--c-card);
-  border: 1.5px solid var(--c-border);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  transition: var(--transition-hover);
+  gap: var(--space-3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  position: relative;
+  overflow: hidden;
 }
+
+.depoimento-card::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  right: var(--space-5);
+  font-size: 6rem;
+  font-family: 'Lora', serif;
+  color: var(--green-soft);
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .depoimento-card::before {
+  color: rgba(82,183,136,0.08);
+}
+
 .depoimento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(30,92,58,.12);
+  border-color: rgba(82,183,136,0.3);
 }
+
+[data-theme="dark"] .depoimento-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.35);
+  border-color: rgba(82,183,136,0.25);
+}
+
+.depoimento-card:hover::before {
+  color: rgba(82,183,136,0.15);
+}
+
 .depoimento-card__stars {
-  color: #F6C90E;
+  color: #F59E0B;
   font-size: 1rem;
   letter-spacing: 2px;
 }
+
 .depoimento-card__text {
-  font-family: 'Lora', 'Bricolage Grotesque', sans-serif;
-  font-size: 0.95rem;
-  line-height: var(--leading-relaxed);
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
   color: var(--c-text2);
+  line-height: 1.7;
   font-style: italic;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
+
 .depoimento-card__author {
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--c-border);
+  margin-top: auto;
 }
+
 .depoimento-card__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: var(--green-soft);
-  color: var(--green-main);
-  font-weight: 700;
-  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--green-main);
   flex-shrink: 0;
+  border: 2px solid rgba(82,183,136,0.2);
 }
-[data-theme="dark"] .depoimento-card__avatar { color: var(--green-accent); }
+
+[data-theme="dark"] .depoimento-card__avatar {
+  color: var(--green-accent);
+  background: rgba(82,183,136,0.12);
+  border-color: rgba(82,183,136,0.2);
+}
+
 .depoimento-card__author strong {
-  display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   color: var(--c-text);
+  display: block;
 }
+
 .depoimento-card__author span {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--c-muted);
 }
 .depoimentos__cta {
@@ -2036,8 +2224,7 @@ html, body {
 
   <div class="dark-band__inner">
     <h2 class="dark-band__title reveal">
-      Tecnologia e ciência a favor da<br>
-      <span class="accent">sua melhor versão.</span>
+      Tecnologia e ciência a favor da <span class="accent">sua melhor versão.</span>
     </h2>
     <div class="dark-band__leaf reveal reveal-d1" aria-hidden="true">
       <!-- Ícone decorativo de folha dourada -->
@@ -2110,11 +2297,11 @@ html, body {
         <h4>Navegação</h4>
         <ul role="list">
           <li><a href="index.html">Início</a></li>
-          <li><a href="recursos.html">Funcionalidades</a></li>
           <li><a href="como-funciona.html">Como funciona</a></li>
-          <li><a href="planos.html">Benefícios</a></li>
+          <li><a href="planos.html">Planos</a></li>
+          <li><a href="recursos.html">Recursos</a></li>
           <li><a href="index.html#depoimentos">Depoimentos</a></li>
-          <li><a href="sobre-nos.html">Sobre</a></li>
+          <li><a href="sobre-nos.html">Sobre nós</a></li>
         </ul>
       </div>
 
