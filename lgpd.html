@@ -762,6 +762,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .page-content__inner { gap: var(--space-12); }
 }
 
+/* ============================================================
+   LEGAL — HIERARQUIA VISUAL REFINADA
+   ============================================================ */
+.legal-section { padding-block: var(--space-16); }
+.legal-content { max-width: 780px; margin-inline: auto; }
+.legal-content h2 {
+  font-size: var(--text-2xl); font-weight: 700; color: var(--c-text);
+  margin-top: var(--space-10); margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--green-soft);
+  position: relative;
+}
+.legal-content h2::before {
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 48px; height: 2px;
+  background: var(--green-main); border-radius: 2px;
+}
+[data-theme="dark"] .legal-content h2::before { background: var(--green-accent); }
+.legal-content h3 {
+  font-size: var(--text-lg); font-weight: 600; color: var(--c-text);
+  margin-top: var(--space-6); margin-bottom: var(--space-3);
+}
+.legal-content p {
+  color: var(--c-text2); line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4); font-size: var(--text-base);
+}
+.legal-content ul, .legal-content ol { padding-left: var(--space-6); margin-bottom: var(--space-4); }
+.legal-content li { color: var(--c-text2); line-height: var(--leading-relaxed); margin-bottom: var(--space-2); }
+.legal-content strong { color: var(--c-text); font-weight: 600; }
+.legal-content a { color: var(--green-main); text-decoration: underline; font-weight: 500; }
+[data-theme="dark"] .legal-content a { color: var(--green-accent); }
+.legal-hero {
+  background: linear-gradient(135deg, var(--green-soft) 0%, var(--bg-primary) 100%);
+  padding-block: var(--space-16); text-align: center; border-bottom: 1px solid var(--c-border);
+}
+[data-theme="dark"] .legal-hero { background: linear-gradient(135deg, rgba(14,46,26,0.5) 0%, var(--c-bg) 100%); }
+.legal-hero__tag {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  background: var(--green-soft); color: var(--green-main);
+  border-radius: var(--radius-full); padding: 6px 14px;
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-4);
+}
+[data-theme="dark"] .legal-hero__tag { background: rgba(82,183,136,.12); color: var(--green-accent); }
+.legal-hero__title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; color: var(--c-text);
+  letter-spacing: -0.02em; margin-bottom: var(--space-3);
+}
+.legal-hero__subtitle { color: var(--c-text2); font-size: var(--text-base); max-width: 480px; margin-inline: auto; }
+
 </style>
 <style>
 /* Scroll Reveal */

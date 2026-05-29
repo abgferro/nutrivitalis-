@@ -590,6 +590,67 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding-bottom: var(--space-20);
 }
 
+.plans-social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-8);
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-10);
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] .plans-social-proof {
+  background: rgba(82,183,136,.05);
+  border-color: rgba(82,183,136,.15);
+}
+
+.plans-social-proof__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.plans-social-proof__number {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--green-main);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .plans-social-proof__number {
+  color: var(--green-accent);
+}
+
+.plans-social-proof__label {
+  font-size: 0.72rem;
+  color: var(--c-muted);
+  font-weight: 500;
+  text-align: center;
+}
+
+.plans-social-proof__divider {
+  width: 1px;
+  height: 32px;
+  background: var(--c-border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .plans-social-proof {
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+  .plans-social-proof__divider { display: none; }
+  .plans-social-proof__number { font-size: 0.95rem; }
+}
+
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -610,43 +671,90 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex; flex-direction: column;
   gap: var(--space-6);
   position: relative;
-  transition: var(--transition-hover);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
 }
-.plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(30,92,58,.10);
+  border-color: rgba(82,183,136,0.3);
+}
+
+[data-theme="dark"] .plan-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.35);
+  border-color: rgba(82,183,136,0.2);
+}
 
 /* Card Pro — destaque */
 .plan-card--pro {
-  background: var(--green-main);
-  border-color: var(--green-main);
-  transform: scale(1.04);
-  box-shadow: var(--shadow-xl);
+  background: linear-gradient(145deg, #1E5C3A 0%, #0E3522 100%);
+  border: 1.5px solid rgba(82,183,136,0.4);
+  transform: scale(1.05);
+  box-shadow:
+    0 24px 64px rgba(30,92,58,.45),
+    0 0 0 1px rgba(82,183,136,0.2),
+    0 1px 0 rgba(255,255,255,0.08) inset;
   z-index: 2;
 }
-.plan-card--pro:hover { transform: scale(1.04) translateY(-4px); }
+
+.plan-card--pro:hover {
+  transform: scale(1.05) translateY(-6px);
+  box-shadow:
+    0 32px 80px rgba(30,92,58,.55),
+    0 0 0 1px rgba(82,183,136,0.35),
+    0 1px 0 rgba(255,255,255,0.1) inset;
+  border-color: rgba(82,183,136,0.5);
+}
+
 [data-theme="dark"] .plan-card--pro {
-  background: #0E2E1A;
-  border-color: var(--green-accent);
-  box-shadow: 0 8px 40px rgba(82,183,136,.2);
+  background: linear-gradient(145deg, #0E2E1A 0%, #061509 100%);
+  border-color: rgba(82,183,136,0.35);
+  box-shadow:
+    0 24px 64px rgba(0,0,0,.5),
+    0 0 0 1px rgba(82,183,136,0.2),
+    0 0 40px rgba(82,183,136,0.08);
+}
+
+[data-theme="dark"] .plan-card--pro:hover {
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.6),
+    0 0 0 1px rgba(82,183,136,0.3),
+    0 0 60px rgba(82,183,136,0.12);
 }
 
 /* Card Premium */
 .plan-card--premium {
   border-color: var(--gold);
   border-width: 2px;
+  box-shadow: 0 4px 16px rgba(184,146,42,.08);
 }
-[data-theme="dark"] .plan-card--premium { border-color: #C9A84C; }
+
+.plan-card--premium:hover {
+  box-shadow: 0 20px 48px rgba(184,146,42,.15);
+  border-color: var(--gold);
+}
+
+[data-theme="dark"] .plan-card--premium {
+  border-color: #C9A84C;
+  box-shadow: 0 4px 16px rgba(184,146,42,.12);
+}
+
+[data-theme="dark"] .plan-card--premium:hover {
+  box-shadow: 0 20px 48px rgba(184,146,42,.2);
+}
 
 /* Badge "Mais popular" */
 .plan-card__badge {
   position: absolute;
   top: -14px; left: 50%; transform: translateX(-50%);
-  background: var(--gold);
+  background: linear-gradient(135deg, #B8922A, #D4A843);
   color: #fff;
-  font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+  font-size: .72rem; font-weight: 700; letter-spacing: .08em;
   text-transform: uppercase;
-  padding: 5px 16px; border-radius: var(--radius-full);
+  padding: 6px 18px; border-radius: var(--radius-full);
   white-space: nowrap;
-  box-shadow: var(--shadow-gold);
+  box-shadow: 0 4px 16px rgba(184,146,42,.4);
 }
 
 /* Cabeçalho do card */
@@ -855,58 +963,123 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    SEÇÃO GARANTIA
    ============================================================ */
 .guarantee-section {
-  background: var(--c-bg);
-  padding-block: var(--space-20);
+  padding-block: var(--space-16);
 }
 
 .guarantee-card {
-  background: var(--green-soft);
-  border: 1.5px solid rgba(30,92,58,.15);
-  border-radius: var(--radius-lg);
-  padding: var(--space-12) var(--space-8);
+  background: linear-gradient(135deg, var(--green-soft) 0%, rgba(234,244,238,0.5) 100%);
+  border: 1.5px solid rgba(82,183,136,0.25);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  max-width: 640px; margin-inline: auto;
-  display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+  gap: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(30,92,58,.08);
 }
+
+.guarantee-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.guarantee-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(184,146,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
 [data-theme="dark"] .guarantee-card {
-  background: rgba(82,183,136,.08);
-  border-color: rgba(82,183,136,.2);
+  background: linear-gradient(135deg, rgba(14,46,26,0.8) 0%, rgba(6,21,9,0.6) 100%);
+  border-color: rgba(82,183,136,0.2);
+  box-shadow: 0 8px 40px rgba(0,0,0,.3);
 }
 
 .guarantee-icon-wrap {
-  width: 80px; height: 80px;
+  width: 72px; height: 72px;
   background: var(--green-main);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--shadow-glow-sm);
-  animation: nv-float 4s ease-in-out infinite;
+  box-shadow: 0 8px 24px rgba(30,92,58,.3);
+  position: relative;
+  z-index: 1;
 }
-[data-theme="dark"] .guarantee-icon-wrap { background: var(--green-accent); }
-.guarantee-icon-wrap [data-lucide] { color: #fff; }
+
+[data-theme="dark"] .guarantee-icon-wrap {
+  background: var(--green-accent);
+  box-shadow: 0 8px 24px rgba(82,183,136,.3);
+}
+
+.guarantee-icon-wrap [data-lucide] { color: #fff; width: 32px; height: 32px; }
 [data-theme="dark"] .guarantee-icon-wrap [data-lucide] { color: #060F0A; }
 
 .guarantee-title {
-  font-size: var(--text-2xl); font-weight: 800;
-  color: var(--green-main); line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--green-main);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
 }
+
 [data-theme="dark"] .guarantee-title { color: var(--green-accent); }
 
 .guarantee-text {
-  font-size: var(--text-base); color: var(--text-secondary);
-  line-height: var(--leading-relaxed); max-width: 480px;
+  font-size: var(--text-base);
+  color: var(--c-text2);
+  line-height: var(--leading-relaxed);
+  max-width: 520px;
+  position: relative;
+  z-index: 1;
 }
+
 [data-theme="dark"] .guarantee-text { color: var(--c-text2); }
 
 .guarantee-perks {
-  display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; justify-content: center;
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
+
 .guarantee-perk {
-  display: flex; align-items: center; gap: var(--space-2);
-  font-size: var(--text-sm); font-weight: 600; color: var(--green-main);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--green-main);
+  background: rgba(255,255,255,0.7);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(82,183,136,0.2);
 }
-[data-theme="dark"] .guarantee-perk { color: var(--green-accent); }
-.guarantee-perk [data-lucide] { flex-shrink: 0; }
+
+[data-theme="dark"] .guarantee-perk {
+  color: var(--green-accent);
+  background: rgba(82,183,136,.08);
+  border-color: rgba(82,183,136,.15);
+}
+
+.guarantee-perk [data-lucide] { flex-shrink: 0; width: 16px; height: 16px; }
+
+@media (max-width: 767px) {
+  .guarantee-card { padding: var(--space-8) var(--space-6); }
+  .guarantee-perks { gap: var(--space-3); }
+}
 
 /* ============================================================
    FAQ
@@ -1342,6 +1515,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
      ============================================================ -->
 <section class="plans-section" aria-label="Opções de planos">
   <div class="container">
+    <div class="plans-social-proof reveal">
+      <div class="plans-social-proof__item">
+        <span class="plans-social-proof__number">+50.000</span>
+        <span class="plans-social-proof__label">usuários ativos</span>
+      </div>
+      <div class="plans-social-proof__divider" aria-hidden="true"></div>
+      <div class="plans-social-proof__item">
+        <span class="plans-social-proof__number">4.9★</span>
+        <span class="plans-social-proof__label">avaliação média</span>
+      </div>
+      <div class="plans-social-proof__divider" aria-hidden="true"></div>
+      <div class="plans-social-proof__item">
+        <span class="plans-social-proof__number">14 dias</span>
+        <span class="plans-social-proof__label">grátis para testar</span>
+      </div>
+      <div class="plans-social-proof__divider" aria-hidden="true"></div>
+      <div class="plans-social-proof__item">
+        <span class="plans-social-proof__number">98%</span>
+        <span class="plans-social-proof__label">satisfação geral</span>
+      </div>
+    </div>
+
     <div class="plans-grid">
 
       <!-- BASIC -->

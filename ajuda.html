@@ -995,6 +995,167 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .page-content__inner { gap: var(--space-12); }
 }
 
+/* ============================================================
+   AJUDA — FAQ PREMIUM & SUPPORT CARDS
+   ============================================================ */
+
+/* Premium FAQ override */
+.faq-item {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--c-card);
+}
+
+.faq-item.open {
+  border-color: rgba(82,183,136,0.35);
+  box-shadow: 0 4px 20px rgba(30,92,58,.08);
+}
+
+[data-theme="dark"] .faq-item.open {
+  border-color: rgba(82,183,136,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+.faq-item__trigger {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  background: none; border: none;
+  font-size: var(--text-base); font-weight: 600;
+  color: var(--c-text);
+  cursor: pointer;
+  text-align: left;
+  gap: var(--space-4);
+  transition: color 0.2s ease;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.faq-item__trigger:hover { color: var(--green-main); }
+[data-theme="dark"] .faq-item__trigger:hover { color: var(--green-accent); }
+
+.faq-item.open .faq-item__trigger { color: var(--green-main); }
+[data-theme="dark"] .faq-item.open .faq-item__trigger { color: var(--green-accent); }
+
+.faq-item__chevron {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  color: var(--green-main);
+}
+
+[data-theme="dark"] .faq-item__chevron {
+  background: rgba(82,183,136,.12);
+  color: var(--green-accent);
+}
+
+.faq-item.open .faq-item__chevron {
+  transform: rotate(180deg);
+  background: var(--green-main);
+  color: #fff;
+}
+
+[data-theme="dark"] .faq-item.open .faq-item__chevron {
+  background: var(--green-accent);
+  color: #060F0A;
+}
+
+.faq-item__body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s ease,
+              opacity 0.3s ease;
+  opacity: 0;
+  padding: 0 var(--space-6);
+}
+
+.faq-item.open .faq-item__body {
+  max-height: 500px;
+  opacity: 1;
+  padding: 0 var(--space-6) var(--space-5);
+}
+
+.faq-item__answer {
+  padding-top: var(--space-3);
+  font-family: 'Lora', serif;
+  font-size: var(--text-sm);
+  color: var(--c-text2);
+  line-height: var(--leading-relaxed);
+  border-top: 1px solid var(--c-border);
+}
+
+/* Support cards premium */
+.support-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex; flex-direction: column; gap: var(--space-3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+}
+
+.support-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(30,92,58,.12);
+  border-color: rgba(82,183,136,.3);
+}
+
+[data-theme="dark"] .support-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.4);
+  border-color: rgba(82,183,136,.2);
+}
+
+/* Premium buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--text-sm); font-weight: 700;
+  cursor: pointer; border: 2px solid transparent;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+              transform 0.2s ease, box-shadow 0.25s ease;
+  text-decoration: none; white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn-primary {
+  background: var(--green-main); color: #fff;
+  box-shadow: 0 4px 16px rgba(30,92,58,.25);
+}
+.btn-primary:hover {
+  background: var(--green-mid);
+  box-shadow: 0 8px 24px rgba(30,92,58,.35); color: #fff;
+}
+[data-theme="dark"] .btn-primary {
+  background: var(--green-accent); color: #0a1a0f;
+  box-shadow: 0 4px 16px rgba(82,183,136,.3);
+}
+[data-theme="dark"] .btn-primary:hover {
+  background: #6FCF97;
+  box-shadow: 0 8px 24px rgba(82,183,136,.45);
+}
+.btn-outline {
+  background: transparent; color: var(--green-main);
+  border-color: var(--green-main);
+}
+.btn-outline:hover {
+  background: var(--green-soft);
+  box-shadow: 0 4px 16px rgba(30,92,58,.12);
+}
+[data-theme="dark"] .btn-outline {
+  color: var(--green-accent); border-color: var(--green-accent);
+}
+[data-theme="dark"] .btn-outline:hover {
+  background: rgba(82,183,136,.12);
+}
+
 </style>
 <style>
 /* Scroll Reveal */

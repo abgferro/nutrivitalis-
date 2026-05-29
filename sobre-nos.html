@@ -691,15 +691,36 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .valor-card {
   background: var(--c-card);
-  border: 1.5px solid var(--c-border);
+  border: 1px solid var(--c-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-8);
+  padding: var(--space-6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative; overflow: hidden;
   display: flex; flex-direction: column; gap: var(--space-4);
-  transition: var(--transition-hover);
 }
-.valor-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-[data-theme="dark"] .valor-card { border-color: var(--c-border); }
-[data-theme="dark"] .valor-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,.5); }
+
+.valor-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-main), var(--green-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.valor-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(30,92,58,.12);
+  border-color: rgba(82,183,136,.3);
+}
+
+.valor-card:hover::before { transform: scaleX(1); }
+
+[data-theme="dark"] .valor-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.4);
+  border-color: rgba(82,183,136,.2);
+}
 
 .valor-card__icon-wrap {
   width: 44px; height: 44px; flex-shrink: 0;
@@ -783,12 +804,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-lg);
   padding: var(--space-8) var(--space-6);
   display: flex; flex-direction: column; align-items: center; gap: var(--space-2);
-  transition: var(--transition-hover);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .impacto-card:hover {
   background: rgba(255,255,255,.1);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.2);
+  border-color: rgba(82,183,136,.3);
 }
 
 .impacto-card__number {
@@ -1373,22 +1395,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
       <div class="impacto-grid">
 
         <div class="impacto-card reveal">
-          <div class="impacto-card__number" aria-label="Mais de 50 mil usuários ativos">+50 mil</div>
+          <div class="impacto-card__number" data-target="50000" data-suffix=" mil" aria-label="Mais de 50 mil usuários ativos">+50 mil</div>
           <div class="impacto-card__label">usuários ativos</div>
         </div>
 
         <div class="impacto-card reveal reveal-d1">
-          <div class="impacto-card__number" aria-label="Mais de 1 milhão de planos gerados">+1 milhão</div>
+          <div class="impacto-card__number" data-target="1" data-suffix=" milhão" data-prefix="+" aria-label="Mais de 1 milhão de planos gerados">+1 milhão</div>
           <div class="impacto-card__label">planos gerados</div>
         </div>
 
         <div class="impacto-card reveal reveal-d2">
-          <div class="impacto-card__number" aria-label="98% de satisfação">98%</div>
+          <div class="impacto-card__number" data-target="98" data-suffix="%" aria-label="98% de satisfação">98%</div>
           <div class="impacto-card__label">de satisfação</div>
         </div>
 
         <div class="impacto-card reveal reveal-d3">
-          <div class="impacto-card__number" aria-label="4 idiomas suportados">4 idiomas</div>
+          <div class="impacto-card__number" data-target="4" data-suffix=" idiomas" aria-label="4 idiomas suportados">4 idiomas</div>
           <div class="impacto-card__label">suportados</div>
         </div>
 
@@ -1776,6 +1798,83 @@ window.addEventListener('DOMContentLoaded', function() {
   if (!localStorage.getItem('cookies-accepted')) {
     document.getElementById('cookieBanner').style.display = 'block';
   }
+});
+</script>
+
+<style>
+/* Premium buttons for sobre-nos */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: var(--text-sm); font-weight: 700;
+  cursor: pointer; border: 2px solid transparent;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+              transform 0.2s ease, box-shadow 0.25s ease;
+  text-decoration: none; white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.btn-primary {
+  background: var(--green-main); color: #fff;
+  box-shadow: 0 4px 16px rgba(30,92,58,.25);
+}
+.btn-primary:hover {
+  background: var(--green-mid);
+  box-shadow: 0 8px 24px rgba(30,92,58,.35); color: #fff;
+}
+[data-theme="dark"] .btn-primary {
+  background: var(--green-accent); color: #0a1a0f;
+  box-shadow: 0 4px 16px rgba(82,183,136,.3);
+}
+[data-theme="dark"] .btn-primary:hover {
+  background: #6FCF97;
+  box-shadow: 0 8px 24px rgba(82,183,136,.45);
+}
+.btn-outline {
+  background: transparent; color: var(--green-main);
+  border-color: var(--green-main);
+}
+.btn-outline:hover {
+  background: var(--green-soft);
+  box-shadow: 0 4px 16px rgba(30,92,58,.12);
+}
+[data-theme="dark"] .btn-outline {
+  color: var(--green-accent); border-color: var(--green-accent);
+}
+[data-theme="dark"] .btn-outline:hover {
+  background: rgba(82,183,136,.12);
+}
+</style>
+
+<script>
+// CountUp animation for stat numbers
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('.impacto-card__number[data-target]');
+  if (!counters.length) return;
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        const target = parseFloat(entry.target.dataset.target);
+        const suffix = entry.target.dataset.suffix || '';
+        const prefix = entry.target.dataset.prefix || '';
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          entry.target.textContent = prefix + (Number.isInteger(target) ? Math.floor(current) : current.toFixed(1)) + suffix;
+        }, 16);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => countObserver.observe(c));
 });
 </script>
 </body>
